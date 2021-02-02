@@ -1,5 +1,7 @@
-export async function fetchImg() {
-   const req = await fetch("https://api.unsplash.com/photos/random/?client_id=USScuo9D6Jru4OWJY1amVxC5VUjYw5mgpiFvwA-GrCQ");
+//Fucntion for searching by word
+export async function searching(query) {
+   let KEY = process.env.VUE_APP_CLIENT_ID;
+   const req = await fetch(`https://api.unsplash.com/search/photos?page=1&per_page=5&query=${query}&client_id=${KEY}`);
    const data = await req.json();
-   return data.urls.regular;
+   return data;
 }
