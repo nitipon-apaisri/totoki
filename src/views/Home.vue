@@ -1,21 +1,48 @@
 <template>
-  <div class="home">
-    <img :src="link">
+  <div>
+      <p>SEARCH</p>
+      <div class="main">
+      <input>
+      <button v-on:click="showGalleri">DONE</button>
+      <Galleri v-if="show"></Galleri>
+      </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import * as MOCK from "../api/mock.js";
+
+import Galleri from "../views/Galleri.vue"
+
+
 export default {
-  name: "Home",
-  components: {},
+  
+  components: {
+    Galleri: Galleri
+  },
   data() { return {
-    link:  ""
+    show: true
   }},
- 
-    created() {
-    let data =  MOCK.fetchImg();
-    this.link = data;
-  }}
+  
+  methods: {
+    showGalleri() {
+      this.show = !this.show
+    }
+  }
+
+}
+    
 </script>
+
+<style scoped>
+
+.main {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+input {
+  width:200px;
+}
+</style>
