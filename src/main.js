@@ -10,6 +10,7 @@ new Vue({
          searchResults: [],
          pageNumber: 1,
          searchInput: "",
+         imgPosition: 0,
       };
    },
    methods: {
@@ -30,11 +31,17 @@ new Vue({
          }
          document.querySelector(".gallery > .btns").style.display = "block";
       },
+      thisImg(index) {
+         this.imgPosition = index;
+         document.querySelector(".gallery > .light-box").style.display = "block";
+      },
       nextPage() {
+         document.querySelector(".gallery > .light-box").style.display = "none";
          this.pageNumber++;
          this.getFetch();
       },
-      async previousPage() {
+      previousPage() {
+         document.querySelector(".gallery > .light-box").style.display = "none";
          this.pageNumber--;
          this.getFetch();
       },

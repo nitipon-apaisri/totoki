@@ -9,6 +9,7 @@
             'background-image': 'url(' + img.urls.regular + ')',
           }"
           class="img"
+          @click="thisImg(index)"
         ></div>
       </li>
     </ul>
@@ -19,15 +20,18 @@
         <button @click="nextPage" class="nextBtn">Next</button>
       </div>
     </div>
+    <LightBox />
   </div>
 </template>
 
 <script>
+import LightBox from "@/components/LightBoxComp";
 import Searching from "@/components/SearchComp";
 export default {
   name: "Gallery",
   components: {
     Searching,
+    LightBox,
   },
   methods: {
     nextPage() {
@@ -35,6 +39,9 @@ export default {
     },
     previousPage() {
       this.$root.previousPage();
+    },
+    thisImg(index) {
+      this.$root.thisImg(index);
     },
   },
   computed: {
