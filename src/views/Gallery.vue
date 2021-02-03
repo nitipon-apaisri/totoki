@@ -76,6 +76,7 @@ export default {
         list-style: none;
         grid-column: span 3;
         .img {
+          cursor: pointer;
           box-sizing: border-box;
           width: 100%;
           height: 256px;
