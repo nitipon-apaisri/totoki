@@ -22,13 +22,14 @@ new Vue({
          }
       },
       async getInput(query) {
-         this.pageNumber = 1;
          this.searchResults = [];
+         this.pageNumber = 1;
          this.searchInput = query;
          let data = await DATA.searching(query, this.pageNumber);
          for (let i of data.results) {
             this.searchResults.push(i);
          }
+         document.querySelector(".gallery > .content").style.display = "block";
          document.querySelector(".gallery > .btns").style.display = "block";
       },
       thisImg(index) {

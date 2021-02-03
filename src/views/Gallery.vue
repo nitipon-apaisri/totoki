@@ -2,17 +2,19 @@
   <div class="gallery">
     <h1>TOTOKI</h1>
     <Searching />
-    <ul>
-      <li v-for="(img, index) in Images" :key="index">
-        <div
-          :style="{
-            'background-image': 'url(' + img.urls.regular + ')',
-          }"
-          class="img"
-          @click="thisImg(index)"
-        ></div>
-      </li>
-    </ul>
+    <div class="content">
+      <ul>
+        <li v-for="(img, index) in Images" :key="index">
+          <div
+            :style="{
+              'background-image': 'url(' + img.urls.regular + ')',
+            }"
+            class="img"
+            @click="thisImg(index)"
+          ></div>
+        </li>
+      </ul>
+    </div>
     <div class="btns">
       <div class="btns-content">
         <button @click="previousPage" class="preBtn">Previous</button>
@@ -59,21 +61,24 @@ export default {
 .gallery {
   max-width: 1440px;
   margin: auto;
-  ul {
-    padding: 0;
-    display: grid;
-    grid-gap: 8px;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-flow: row;
-    li {
-      list-style: none;
-      grid-column: span 3;
-      .img {
-        box-sizing: border-box;
-        width: 100%;
-        height: 256px;
-        background-repeat: no-repeat;
-        background-size: cover;
+  .content {
+    display: none;
+    ul {
+      padding: 0;
+      display: grid;
+      grid-gap: 8px;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-flow: row;
+      li {
+        list-style: none;
+        grid-column: span 3;
+        .img {
+          box-sizing: border-box;
+          width: 100%;
+          height: 256px;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
       }
     }
   }
@@ -83,7 +88,7 @@ export default {
       justify-content: center;
       display: flex;
       button {
-        margin: 0;
+        margin: 0 8px;
       }
     }
   }
