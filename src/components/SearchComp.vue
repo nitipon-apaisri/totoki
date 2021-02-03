@@ -22,7 +22,9 @@ export default {
     postInput() {
       this.$root.getInput(this.input);
       this.input = "";
-      document.querySelector(".btns").style.display = "block";
+      this.$router.push("/Gallery").catch((err) => {
+        err;
+      });
     },
   },
 };

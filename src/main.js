@@ -28,17 +28,15 @@ new Vue({
          for (let i of data.results) {
             this.searchResults.push(i);
          }
-         console.log(JSON.parse(JSON.stringify(this.searchResults)));
+         document.querySelector(".gallery > .btns").style.display = "block";
       },
       nextPage() {
          this.pageNumber++;
          this.getFetch();
-         console.log(JSON.parse(JSON.stringify(this.searchResults)));
       },
       async previousPage() {
          this.pageNumber--;
          this.getFetch();
-         console.log(JSON.parse(JSON.stringify(this.searchResults)));
       },
    },
    router,
