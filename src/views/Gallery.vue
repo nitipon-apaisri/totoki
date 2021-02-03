@@ -61,6 +61,9 @@ export default {
 .gallery {
   max-width: 1440px;
   margin: auto;
+  h1 {
+    margin: 20px 0 20px 0;
+  }
   .content {
     display: none;
     ul {

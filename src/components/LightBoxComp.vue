@@ -21,9 +21,23 @@
           </div>
           <hr />
           <div class="sub-details">
-            <h4>Dimensions</h4>
-            <p>{{ Img[ImgPosition].width }} x {{ Img[ImgPosition].height }}</p>
+            <div class="diamension">
+              <h4>Dimensions</h4>
+              <p>
+                {{ Img[ImgPosition].width }} x {{ Img[ImgPosition].height }}
+              </p>
+            </div>
+            <div class="scale">
+              <h4>Scale</h4>
+              <p>1 : 1.5</p>
+            </div>
+            <div class="like">
+              <h4>Like</h4>
+              <p>{{ Img[ImgPosition].likes }}</p>
+            </div>
           </div>
+          <hr />
+          <button>Fav</button>
         </div>
       </div>
     </div>
@@ -65,7 +79,7 @@ export default {
     padding: 40px;
     border-radius: 24px;
     margin: auto;
-    width: 900px;
+    width: 860px;
     background: #fff;
     .img-info {
       display: flex;
@@ -78,14 +92,20 @@ export default {
         background-repeat: no-repeat;
         background-size: cover;
       }
+      @mixin img-info-details {
+        line-height: 1.5rem;
+        p {
+          font-size: 0.9rem;
+        }
+      }
       .img-details {
         text-align: left;
-        width: 380px;
+        width: 320px;
         .img-description {
-          line-height: 1.5rem;
+          @include img-info-details;
         }
         .author {
-          line-height: 1.5rem;
+          @include img-info-details;
         }
         hr {
           border: 0;
@@ -95,7 +115,17 @@ export default {
           margin: 8px 0;
         }
         .sub-details {
-          line-height: 1.5rem;
+          display: flex;
+          justify-content: space-between;
+          .diamension {
+            @include img-info-details;
+          }
+          .scale {
+            @include img-info-details;
+          }
+          .like {
+            @include img-info-details;
+          }
         }
       }
     }
