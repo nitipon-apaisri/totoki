@@ -88,7 +88,7 @@ export default {
         border-radius: 8px;
         box-sizing: border-box;
         width: 400px;
-        height: 400 * 1.5;
+        height: 100%;
         background-repeat: no-repeat;
         background-size: cover;
       }
