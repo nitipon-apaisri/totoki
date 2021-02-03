@@ -11,6 +11,8 @@ import * as MOCK from "../api/mock.js";
 
 export default {
 
+    props
+
     data() { return {
         photos: []
     }},

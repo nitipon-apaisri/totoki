@@ -1,5 +1,6 @@
 import * as MOCK from "/mock.json";
 export function fetchImg() {
+<<<<<<< HEAD
    let images = [];
 
    for(let i = 0; i < 8; i++) {
@@ -7,5 +8,8 @@ export function fetchImg() {
     
    }
    return images;
+=======
+   return MOCK[0].urls.regular;
+>>>>>>> main
 }
  
