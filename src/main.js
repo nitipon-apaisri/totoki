@@ -8,14 +8,34 @@ new Vue({
    data() {
       return {
          searchResults: [],
+         pageNumber: 1,
+         searchInput: "",
       };
    },
    methods: {
-      async getInput(query) {
-         let data = await DATA.searching(query);
+      async getFetch() {
+         let data = await DATA.searching(this.searchInput, this.pageNumber);
+         this.searchResults = [];
          for (let i of data.results) {
             this.searchResults.push(i);
          }
+      },
+      async getInput(query) {
+         this.searchInput = query;
+         let data = await DATA.searching(query, this.pageNumber);
+         for (let i of data.results) {
+            this.searchResults.push(i);
+         }
+         console.log(JSON.parse(JSON.stringify(this.searchResults)));
+      },
+      nextPage() {
+         this.pageNumber++;
+         this.getFetch();
+         console.log(JSON.parse(JSON.stringify(this.searchResults)));
+      },
+      async previousPage() {
+         this.pageNumber--;
+         this.getFetch();
          console.log(JSON.parse(JSON.stringify(this.searchResults)));
       },
    },

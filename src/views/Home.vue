@@ -12,6 +12,10 @@
         ></div>
       </li>
     </ul>
+    <div class="btns">
+      <button @click="previousPage" class="preBtn">Previous</button>
+      <button @click="nextPage" class="nextBtn">Next</button>
+    </div>
   </div>
 </template>
 
@@ -21,6 +25,14 @@ export default {
   name: "Home",
   components: {
     Searching,
+  },
+  methods: {
+    nextPage() {
+      this.$root.nextPage();
+    },
+    previousPage() {
+      this.$root.previousPage();
+    },
   },
   computed: {
     Images() {
@@ -50,6 +62,9 @@ export default {
         background-size: cover;
       }
     }
+  }
+  .btns {
+    display: none;
   }
 }
 </style>
