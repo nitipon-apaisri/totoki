@@ -2,8 +2,6 @@
   <div class="home">
     <h1>Hello</h1>
       <img :src="link" alt="img" />
-      {{ lightbox }}
-      {{LightBox}}
     <LightBox />
   </div>
 </template>
@@ -12,7 +10,7 @@
 // @ is an alias to /src
 // import * as DATA from "@/api/index";
 import * as MOCK from "../api/mock.js";
-import * as LightBox from "../components/LightBox.vue"
+import LightBox from "../components/LightBox.vue"
 export default {
   name: "Home",
   components: {

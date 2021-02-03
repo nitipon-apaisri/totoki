@@ -1,7 +1,7 @@
 <template>
 
-<div class="main-test">
-    <div id="myModal" class="lightbox" v-on:click="openLightBox()">
+<div class="main-test"  v-on:click="openLightBox()">
+    <div id="myModal" class="lightbox nodisplay">
         <img src="https://live.staticflickr.com/8515/8458051641_8563c83111.jpg" />
     </div>
 </div>
@@ -22,7 +22,8 @@ export default {
 methods: {
       openLightBox() {
         const open = document.getElementById("myModal")
-        open.classList.Add("display")
+        open.classList.remove("nodisplay")
+        open.classList.add("display")
         }
     }
 }
@@ -44,6 +45,10 @@ methods: {
 
 .display {
     display: block;
+}
+
+.nodisplay {
+    display: none;
 }
 
 .main-test {
