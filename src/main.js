@@ -21,6 +21,8 @@ new Vue({
          }
       },
       async getInput(query) {
+         this.pageNumber = 1;
+         this.searchResults = [];
          this.searchInput = query;
          let data = await DATA.searching(query, this.pageNumber);
          for (let i of data.results) {
