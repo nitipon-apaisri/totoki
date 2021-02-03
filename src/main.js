@@ -7,13 +7,16 @@ Vue.config.productionTip = false;
 new Vue({
    data() {
       return {
-         input: "",
+         searchResults: [],
       };
    },
    methods: {
       async getInput(query) {
          let data = await DATA.searching(query);
-         console.log(data.results);
+         for (let i of data.results) {
+            this.searchResults.push(i);
+         }
+         console.log(JSON.parse(JSON.stringify(this.searchResults)));
       },
    },
    router,
