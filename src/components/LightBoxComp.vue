@@ -1,5 +1,6 @@
 <template>
-  <div class="light-box" @click="hideLightBox">
+  <div class="light-box">
+    <button class="close-modal" @click="hideLightBox">X</button>
     <div class="img-card">
       <div class="img-info">
         <img
@@ -66,7 +67,6 @@ export default {
 .light-box {
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
@@ -74,11 +74,14 @@ export default {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   display: none;
+  .close-modal {
+    margin-top: 50px;
+  }
   .img-card {
     box-sizing: border-box;
     padding: 40px;
     border-radius: 24px;
-    margin: auto;
+    margin: 100px auto 0 auto;
     width: 860px;
     background: #fff;
     .img-info {
@@ -99,8 +102,8 @@ export default {
         }
       }
       .img-details {
-        text-align: left;
         width: 320px;
+        text-align: left;
         .img-description {
           @include img-info-details;
         }
