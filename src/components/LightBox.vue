@@ -9,7 +9,7 @@
                     <a class="prev" v-on:click="prevSlide()">&#10094;</a>
                     <a class="next" v-on:click="nextSlide()">&#10095;</a>
 
-            <img :src="arr" />
+            <img :src="images[this.position]" />
                            
             <!--
             <img src="https://live.staticflickr.com/8515/8458051641_8563c83111.jpg" />
@@ -27,7 +27,14 @@ export default {
     
     data(){
         return {
-             arr : this.$root.imgArray[1],
+             arr: "",
+             position: 0,
+        }
+    },
+
+    computed: {
+        images(){
+            return this.$root.imgArray
         }
     },
     
@@ -37,6 +44,8 @@ methods: {
             const open = document.getElementById("myModal")
             open.classList.remove("nodisplay")
             open.classList.add("display")
+
+            //console.log(images)
 
         //console.log(this.$root.imgArray)
         //const array = this.$root.imgArray
@@ -52,12 +61,14 @@ methods: {
         },
 
         prevSlide(){
-            
+            this.position--
+            console.log(this.position)
         },
 
         
         nextSlide(){
-
+            this.position++
+            console.log(this.position)
         },
         
 
