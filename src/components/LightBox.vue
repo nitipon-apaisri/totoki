@@ -42,8 +42,7 @@ export default {
 methods: {
       openLightBox() {
             const open = document.getElementById("myModal")
-            open.classList.remove("nodisplay")
-            open.classList.add("display")
+            open.style.display = "block"
 
             //console.log(images)
 

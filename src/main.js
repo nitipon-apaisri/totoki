@@ -53,6 +53,19 @@ new Vue({
          this.pageNumber--;
          this.getFetch();
       },
+      prevSlide(index) {
+         //return this.thisImg(index--)
+         //this.imgPosition = index;
+         this.thisImg(index--) // works         
+         console.log(this.thisImg);
+     },   
+     nextSlide(index) {
+         //this.thisImg(index++)
+         //this.imgPosition = index;
+         //this.imgPosition++;
+         console.log(this.thisImg(index++)); //undefined
+         //return this.thisImg(index++)
+     },
    },
    router,
    render: (h) => h(App),
