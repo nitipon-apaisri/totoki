@@ -11,17 +11,17 @@ new Vue({
          pageNumber: 1,
          searchInput: "",
          imgPosition: 0,
+         favImgPosition: 0,
          favData: [],
          useFavData: [],
       };
    },
    beforeMount() {
       this.favData.push(JSON.parse(localStorage.getItem("fav")));
-      console.log(JSON.parse(JSON.stringify(this.favData[0])));
+      // console.log(JSON.parse(JSON.stringify(this.favData[0])));
       for (let i of this.favData[0]) {
          this.useFavData.push(i);
       }
-      console.log(JSON.parse(JSON.stringify(this.useFavData)));
    },
    methods: {
       async getFetch() {
@@ -46,6 +46,10 @@ new Vue({
          this.imgPosition = index;
          document.querySelector(".gallery > .light-box").style.display = "block";
       },
+      thisFavImg(index) {
+         this.favImgPosition = index;
+         document.querySelector(".favorite > .light-box").style.display = "block";
+      },
       nextPage() {
          document.querySelector(".gallery > .light-box").style.display = "none";
          this.pageNumber++;
@@ -59,7 +63,6 @@ new Vue({
       addFav(value) {
          this.useFavData.push(value);
          localStorage.setItem("fav", JSON.stringify(this.useFavData));
-         console.log(JSON.parse(JSON.stringify(this.useFavData)));
       },
    },
    router,

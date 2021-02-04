@@ -14,14 +14,24 @@
         </li>
       </ul>
     </div>
+    <LightBox />
   </div>
 </template>
 
 <script>
+import LightBox from "@/components/LightBoxFavComp";
 export default {
+  components: {
+    LightBox,
+  },
   computed: {
     GetFav() {
       return this.$root.useFavData;
+    },
+  },
+  methods: {
+    thisImg(index) {
+      this.$root.thisFavImg(index);
     },
   },
 };
