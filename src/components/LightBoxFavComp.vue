@@ -38,7 +38,7 @@
             </div>
           </div>
           <hr />
-          <button>Previous</button>
+          <button @click="previousImg">Previous</button>
           <button @click="nextImg">Next</button>
         </div>
       </div>
@@ -68,6 +68,9 @@ export default {
     },
     nextImg() {
       this.$root.nextFavImg();
+    },
+    previousImg() {
+      this.$root.previousFavImg();
     },
   },
 };

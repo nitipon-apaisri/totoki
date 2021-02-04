@@ -1,6 +1,5 @@
 <template>
   <div class="light-box">
-    <button class="close-modal" @click="hideLightBox">X</button>
     <div class="img-card">
       <div class="img-info">
         <img
@@ -9,6 +8,7 @@
           class="img"
         />
         <div class="img-details">
+          <button class="close-modal" @click="hideLightBox">X</button>
           <div class="img-description">
             <h4>Description</h4>
             <p>{{ Img[ImgPosition].description }}</p>
@@ -39,7 +39,7 @@
           </div>
           <hr />
           <button @click="addFav">Fav</button>
-          <button>Previous</button>
+          <button @click="previousImg">Previous</button>
           <button @click="nextImg">Next</button>
         </div>
       </div>
@@ -72,6 +72,9 @@ export default {
     nextImg() {
       this.$root.nextImg();
     },
+    previousImg() {
+      this.$root.previousImg();
+    },
   },
 };
 </script>
@@ -88,7 +91,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.4);
   display: none;
   .close-modal {
-    margin-top: 50px;
+    margin-left: 100%;
   }
   .img-card {
     box-sizing: border-box;

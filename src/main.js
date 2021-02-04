@@ -18,7 +18,6 @@ new Vue({
    },
    beforeMount() {
       this.favData.push(JSON.parse(localStorage.getItem("fav")));
-      // console.log(JSON.parse(JSON.stringify(this.favData[0])));
       for (let i of this.favData[0]) {
          this.useFavData.push(i);
       }
@@ -44,7 +43,6 @@ new Vue({
       },
       thisImg(index) {
          this.imgPosition = index;
-         console.log(this.imgPosition);
          document.querySelector(".gallery > .light-box").style.display = "block";
       },
       thisFavImg(index) {
@@ -71,14 +69,26 @@ new Vue({
          } else {
             this.favImgPosition++;
          }
-         console.log(this.favImgPosition);
-         console.log(this.useFavData.length);
+      },
+      previousFavImg() {
+         if (this.favImgPosition == 0) {
+            this.favImgPosition = 0;
+         } else {
+            this.favImgPosition--;
+         }
       },
       nextImg() {
          if (this.imgPosition == 11) {
             this.nextPage();
          } else {
             this.imgPosition++;
+         }
+      },
+      previousImg() {
+         if (this.imgPosition == 0) {
+            this.imgPosition = 0;
+         } else {
+            this.imgPosition--;
          }
       },
    },
