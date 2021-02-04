@@ -2,8 +2,8 @@
   <div class="navi">
     <nav>
       <ul>
-        <router-link to="/">Home</router-link>
-        <router-link to="/Gallery">Gallery</router-link>
+        <router-link to="/">Home</router-link> |
+        <router-link to="/Gallery">Gallery</router-link> |
         <router-link to="/Favorite">Favorite</router-link>
       </ul>
     </nav>
@@ -14,5 +14,22 @@
 export default {};
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: red;
+}
+
+a:active {
+  color: yellow;
+}
+
 </style>

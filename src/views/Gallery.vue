@@ -96,5 +96,9 @@ export default {
       }
     }
   }
+
+  .img:hover {
+    opacity: 0.3;
+  }
 }
 </style>
