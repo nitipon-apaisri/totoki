@@ -16,6 +16,11 @@ const routes = [
       name: "Gallery",
       component: Gallery,
    },
+   {
+      path: "/Favorite",
+      name: "Favorite",
+      component: Favorite,
+   },
 ];
 
 const router = new VueRouter({

@@ -38,7 +38,6 @@
             </div>
           </div>
           <hr />
-          <button @click="addFav">Fav</button>
           <button @click="previousImg">Previous</button>
           <button @click="nextImg">Next</button>
         </div>
@@ -52,28 +51,26 @@ export default {
   data() {
     return {
       setFavData: [],
+      imgPos: 0,
     };
   },
   computed: {
     Img() {
-      return this.$root.searchResults;
+      return this.$root.useFavData;
     },
     ImgPosition() {
-      return this.$root.imgPosition;
+      return this.$root.favImgPosition;
     },
   },
   methods: {
     hideLightBox() {
       document.querySelector(".light-box").style.display = "none";
     },
-    addFav() {
-      this.$root.addFav(this.Img[this.ImgPosition]);
-    },
     nextImg() {
-      this.$root.nextImg();
+      this.$root.nextFavImg();
     },
     previousImg() {
-      this.$root.previousImg();
+      this.$root.previousFavImg();
     },
   },
 };
@@ -90,9 +87,6 @@ export default {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   display: none;
-  .close-modal {
-    margin-left: 100%;
-  }
   .img-card {
     box-sizing: border-box;
     padding: 40px;
@@ -120,6 +114,9 @@ export default {
       .img-details {
         width: 320px;
         text-align: left;
+        .close-modal {
+          margin-left: 100%;
+        }
         .img-description {
           @include img-info-details;
         }

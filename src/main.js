@@ -4,20 +4,22 @@ import router from "./router";
 import * as DATA from "@/api/index";
 Vue.config.productionTip = false;
 
-//Alex testar
-
 new Vue({
-   data(){
-      return{
+   data() {
+      return {
          searchResults: [],
          pageNumber: 1,
          searchInput: "",
          imgPosition: 0,
-        //var: "Hello World",
-        imgArray: [
-         "https://live.staticflickr.com/8515/8458051641_8563c83111.jpg",
-         "https://keepongeekin.files.wordpress.com/2020/08/cropped-1500x500-1.jpg",
-        ],     
+         favImgPosition: 0,
+         favData: [],
+         useFavData: [],
+      };
+   },
+   beforeMount() {
+      this.favData.push(JSON.parse(localStorage.getItem("fav")));
+      for (let i of this.favData[0]) {
+         this.useFavData.push(i);
       }
    },
    methods: {
@@ -43,6 +45,10 @@ new Vue({
          this.imgPosition = index;
          document.querySelector(".gallery > .light-box").style.display = "block";
       },
+      thisFavImg(index) {
+         this.favImgPosition = index;
+         document.querySelector(".favorite > .light-box").style.display = "block";
+      },
       nextPage() {
          document.querySelector(".gallery > .light-box").style.display = "none";
          this.pageNumber++;
@@ -53,19 +59,38 @@ new Vue({
          this.pageNumber--;
          this.getFetch();
       },
-      prevSlide(index) {
-         //return this.thisImg(index--)
-         //this.imgPosition = index;
-         this.thisImg(index--) // works         
-         console.log(this.thisImg);
-     },   
-     nextSlide(index) {
-         //this.thisImg(index++)
-         //this.imgPosition = index;
-         //this.imgPosition++;
-         console.log(this.thisImg(index++)); //undefined
-         //return this.thisImg(index++)
-     },
+      addFav(value) {
+         this.useFavData.push(value);
+         localStorage.setItem("fav", JSON.stringify(this.useFavData));
+      },
+      nextFavImg() {
+         if (this.favImgPosition == this.useFavData.length - 1) {
+            this.favImgPosition = 0;
+         } else {
+            this.favImgPosition++;
+         }
+      },
+      previousFavImg() {
+         if (this.favImgPosition == 0) {
+            this.favImgPosition = 0;
+         } else {
+            this.favImgPosition--;
+         }
+      },
+      nextImg() {
+         if (this.imgPosition == 11) {
+            this.nextPage();
+         } else {
+            this.imgPosition++;
+         }
+      },
+      previousImg() {
+         if (this.imgPosition == 0) {
+            this.imgPosition = 0;
+         } else {
+            this.imgPosition--;
+         }
+      },
    },
    router,
    render: (h) => h(App),
