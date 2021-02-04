@@ -1,6 +1,5 @@
 <template>
   <div class="light-box">
-    <button class="close-modal" @click="hideLightBox">X</button>
     <div class="img-card">
       <div class="img-info">
         <img
@@ -9,6 +8,7 @@
           class="img"
         />
         <div class="img-details">
+          <button class="close-modal" @click="hideLightBox">X</button>
           <div class="img-description">
             <h4>Description</h4>
             <p>{{ Img[ImgPosition].description }}</p>
@@ -56,15 +56,12 @@ export default {
       return this.$root.useFavData;
     },
     ImgPosition() {
-      return this.$root.imgPosition;
+      return this.$root.favImgPosition;
     },
   },
   methods: {
     hideLightBox() {
       document.querySelector(".light-box").style.display = "none";
-    },
-    addFav() {
-      this.$root.addFav(this.Img[this.ImgPosition]);
     },
   },
 };
@@ -81,9 +78,6 @@ export default {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   display: none;
-  .close-modal {
-    margin-top: 50px;
-  }
   .img-card {
     box-sizing: border-box;
     padding: 40px;
@@ -111,6 +105,9 @@ export default {
       .img-details {
         width: 320px;
         text-align: left;
+        .close-modal {
+          margin-left: 100%;
+        }
         .img-description {
           @include img-info-details;
         }
