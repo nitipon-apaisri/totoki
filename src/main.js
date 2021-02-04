@@ -44,6 +44,7 @@ new Vue({
       },
       thisImg(index) {
          this.imgPosition = index;
+         console.log(this.imgPosition);
          document.querySelector(".gallery > .light-box").style.display = "block";
       },
       thisFavImg(index) {
@@ -63,6 +64,22 @@ new Vue({
       addFav(value) {
          this.useFavData.push(value);
          localStorage.setItem("fav", JSON.stringify(this.useFavData));
+      },
+      nextFavImg() {
+         if (this.favImgPosition == this.useFavData.length - 1) {
+            this.favImgPosition = 0;
+         } else {
+            this.favImgPosition++;
+         }
+         console.log(this.favImgPosition);
+         console.log(this.useFavData.length);
+      },
+      nextImg() {
+         if (this.imgPosition == 11) {
+            this.nextPage();
+         } else {
+            this.imgPosition++;
+         }
       },
    },
    router,

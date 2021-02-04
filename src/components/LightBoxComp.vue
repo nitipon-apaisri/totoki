@@ -39,6 +39,8 @@
           </div>
           <hr />
           <button @click="addFav">Fav</button>
+          <button>Previous</button>
+          <button @click="nextImg">Next</button>
         </div>
       </div>
     </div>
@@ -66,6 +68,9 @@ export default {
     },
     addFav() {
       this.$root.addFav(this.Img[this.ImgPosition]);
+    },
+    nextImg() {
+      this.$root.nextImg();
     },
   },
 };

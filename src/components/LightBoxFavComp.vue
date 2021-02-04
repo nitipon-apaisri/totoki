@@ -38,6 +38,8 @@
             </div>
           </div>
           <hr />
+          <button>Previous</button>
+          <button @click="nextImg">Next</button>
         </div>
       </div>
     </div>
@@ -49,6 +51,7 @@ export default {
   data() {
     return {
       setFavData: [],
+      imgPos: 0,
     };
   },
   computed: {
@@ -62,6 +65,9 @@ export default {
   methods: {
     hideLightBox() {
       document.querySelector(".light-box").style.display = "none";
+    },
+    nextImg() {
+      this.$root.nextFavImg();
     },
   },
 };
