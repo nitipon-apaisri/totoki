@@ -24,7 +24,8 @@ hr {
   margin: 0;
 }
 body {
-  margin: 0 !important;
+  padding: 0 0 20px 0;
+  margin: -16px 0 0 0 !important;
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

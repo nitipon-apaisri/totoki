@@ -7,7 +7,9 @@
       v-model="input"
       @keyup.enter="postInput"
     />
-    <button @click="postInput">Send</button>
+    <button @click="postInput">
+      <font-awesome-icon :icon="['fas', 'search']" />
+    </button>
   </div>
 </template>
 
@@ -31,4 +33,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@mixin placeholder {
+  font-size: 0.7rem;
+}
+.searching-box {
+  margin-bottom: 32px;
+  input {
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    padding: 8px;
+  }
+  button {
+    @extend input;
+  }
+  ::-webkit-input-placeholder {
+    @include placeholder;
+  }
+  ::-moz-placeholder {
+    @include placeholder;
+  }
+  :-ms-input-placeholder {
+    @include placeholder;
+  }
+  :-moz-placeholder {
+    @include placeholder;
+  }
+}
 </style>
