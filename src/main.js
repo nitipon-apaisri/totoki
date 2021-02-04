@@ -10,6 +10,7 @@ new Vue({
          searchResults: [],
          pageNumber: 1,
          searchInput: "",
+         imgPosition: 0,
       };
    },
    methods: {
@@ -21,24 +22,29 @@ new Vue({
          }
       },
       async getInput(query) {
-         this.pageNumber = 1;
          this.searchResults = [];
+         this.pageNumber = 1;
          this.searchInput = query;
          let data = await DATA.searching(query, this.pageNumber);
          for (let i of data.results) {
             this.searchResults.push(i);
          }
-         console.log(JSON.parse(JSON.stringify(this.searchResults)));
+         document.querySelector(".gallery > .content").style.display = "block";
+         document.querySelector(".gallery > .btns").style.display = "block";
+      },
+      thisImg(index) {
+         this.imgPosition = index;
+         document.querySelector(".gallery > .light-box").style.display = "block";
       },
       nextPage() {
+         document.querySelector(".gallery > .light-box").style.display = "none";
          this.pageNumber++;
          this.getFetch();
-         console.log(JSON.parse(JSON.stringify(this.searchResults)));
       },
-      async previousPage() {
+      previousPage() {
+         document.querySelector(".gallery > .light-box").style.display = "none";
          this.pageNumber--;
          this.getFetch();
-         console.log(JSON.parse(JSON.stringify(this.searchResults)));
       },
    },
    router,

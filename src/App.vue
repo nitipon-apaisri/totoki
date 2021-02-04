@@ -4,6 +4,16 @@
   </div>
 </template>
 <style lang="scss">
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+hr {
+  margin: 0;
+}
 body {
   margin: 0 !important;
   #app {
