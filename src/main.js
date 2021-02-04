@@ -11,7 +11,16 @@ new Vue({
          pageNumber: 1,
          searchInput: "",
          imgPosition: 0,
+         favImgPosition: 0,
+         favData: [],
+         useFavData: [],
       };
+   },
+   beforeMount() {
+      this.favData.push(JSON.parse(localStorage.getItem("fav")));
+      for (let i of this.favData[0]) {
+         this.useFavData.push(i);
+      }
    },
    methods: {
       async getFetch() {
@@ -36,6 +45,10 @@ new Vue({
          this.imgPosition = index;
          document.querySelector(".gallery > .light-box").style.display = "block";
       },
+      thisFavImg(index) {
+         this.favImgPosition = index;
+         document.querySelector(".favorite > .light-box").style.display = "block";
+      },
       nextPage() {
          document.querySelector(".gallery > .light-box").style.display = "none";
          this.pageNumber++;
@@ -45,6 +58,38 @@ new Vue({
          document.querySelector(".gallery > .light-box").style.display = "none";
          this.pageNumber--;
          this.getFetch();
+      },
+      addFav(value) {
+         this.useFavData.push(value);
+         localStorage.setItem("fav", JSON.stringify(this.useFavData));
+      },
+      nextFavImg() {
+         if (this.favImgPosition == this.useFavData.length - 1) {
+            this.favImgPosition = 0;
+         } else {
+            this.favImgPosition++;
+         }
+      },
+      previousFavImg() {
+         if (this.favImgPosition == 0) {
+            this.favImgPosition = 0;
+         } else {
+            this.favImgPosition--;
+         }
+      },
+      nextImg() {
+         if (this.imgPosition == 11) {
+            this.nextPage();
+         } else {
+            this.imgPosition++;
+         }
+      },
+      previousImg() {
+         if (this.imgPosition == 0) {
+            this.imgPosition = 0;
+         } else {
+            this.imgPosition--;
+         }
       },
    },
    router,

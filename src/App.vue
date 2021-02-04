@@ -1,8 +1,17 @@
 <template>
   <div id="app">
+    <NavigationBar />
     <router-view />
   </div>
 </template>
+<script>
+import NavigationBar from "@/components/NavigationBarComp";
+export default {
+  components: {
+    NavigationBar,
+  },
+};
+</script>
 <style lang="scss">
 h1,
 h2,

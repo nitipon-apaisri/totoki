@@ -7,6 +7,7 @@
 
 <script>
 import Searching from "@/components/SearchComp";
+
 export default {
   name: "Home",
   components: {
