@@ -11,7 +11,17 @@ new Vue({
          pageNumber: 1,
          searchInput: "",
          imgPosition: 0,
+         favData: [],
+         useFavData: [],
       };
+   },
+   beforeMount() {
+      this.favData.push(JSON.parse(localStorage.getItem("fav")));
+      console.log(JSON.parse(JSON.stringify(this.favData[0])));
+      for (let i of this.favData[0]) {
+         this.useFavData.push(i);
+      }
+      console.log(JSON.parse(JSON.stringify(this.useFavData)));
    },
    methods: {
       async getFetch() {
@@ -45,6 +55,11 @@ new Vue({
          document.querySelector(".gallery > .light-box").style.display = "none";
          this.pageNumber--;
          this.getFetch();
+      },
+      addFav(value) {
+         this.useFavData.push(value);
+         localStorage.setItem("fav", JSON.stringify(this.useFavData));
+         console.log(JSON.parse(JSON.stringify(this.useFavData)));
       },
    },
    router,

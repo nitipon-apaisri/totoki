@@ -38,7 +38,7 @@
             </div>
           </div>
           <hr />
-          <button>Fav</button>
+          <button @click="addFav">Fav</button>
         </div>
       </div>
     </div>
@@ -47,6 +47,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      setFavData: [],
+    };
+  },
   computed: {
     Img() {
       return this.$root.searchResults;
@@ -58,6 +63,9 @@ export default {
   methods: {
     hideLightBox() {
       document.querySelector(".light-box").style.display = "none";
+    },
+    addFav() {
+      this.$root.addFav(this.Img[this.ImgPosition]);
     },
   },
 };
