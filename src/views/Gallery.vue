@@ -11,6 +11,7 @@
             }"
             class="img"
             @click="thisImg(index)"
+            :alt="img.alt_description"
           ></div>
         </li>
       </ul>
@@ -19,6 +20,8 @@
       <div class="btns-content">
         <button @click="previousPage" class="preBtn">Previous</button>
         <p>{{ PageNumber }}</p>
+        <p>/</p>
+        <p>{{ TotalPages }}</p>
         <button @click="nextPage" class="nextBtn">Next</button>
       </div>
     </div>
@@ -52,6 +55,9 @@ export default {
     },
     PageNumber() {
       return this.$root.pageNumber;
+    },
+    TotalPages() {
+      return this.$root.totalPages;
     },
   },
 };
@@ -91,7 +97,18 @@ export default {
     .btns-content {
       justify-content: center;
       display: flex;
+      p {
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin: 0 2px;
+        line-height: 35px;
+      }
       button {
+        border: 0;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 0.7rem;
+        font-weight: bold;
         margin: 0 8px;
       }
     }
