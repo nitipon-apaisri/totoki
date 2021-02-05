@@ -28,15 +28,15 @@ export default {
         this.errorAlert = "It's empty!";
         document.querySelector(".searching-box > p").style.display = "block";
       } else {
-        document.querySelector(".searching-box > p").style.display = "none";
-        document.querySelector(
-          ".gallery > .btns > .btns-content > .preBtn"
-        ).style.display = "none";
         this.$root.getInput(this.input);
         this.input = "";
         this.$router.push("/Gallery").catch((err) => {
           err;
         });
+        document.querySelector(".searching-box > p").style.display = "none";
+        document.querySelector(
+          ".gallery > .btns > .btns-content > .preBtn"
+        ).style.display = "none";
       }
     },
   },
