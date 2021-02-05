@@ -15,7 +15,9 @@
               <h4>Description</h4>
               <p>{{ Img[ImgPosition].description }}</p>
             </div>
-            <button class="close-modal" @click="hideLightBox">X</button>
+            <button class="close-modal" @click="hideLightBox">
+              <font-awesome-icon :icon="['fas', 'times']" />
+            </button>
           </div>
           <div class="author">
             <h4>Author</h4>
@@ -78,7 +80,6 @@ export default {
       return this.$root.loaded;
     },
   },
-
   methods: {
     hideLightBox() {
       document.querySelector(".light-box").style.display = "none";
@@ -97,6 +98,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.alreadyFav {
+  color: #fc5185;
+}
 .light-box {
   position: fixed;
   z-index: 1;

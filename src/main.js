@@ -7,9 +7,13 @@ import * as MOCK from "@/api/mock";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 library.add(faSearch);
 library.add(faHeart);
+library.add(faTimes);
+library.add(faTrashAlt);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 //--------
 Vue.config.productionTip = false;
@@ -68,8 +72,18 @@ new Vue({
       },
       //---------------
       thisImg(index) {
+         let favId = [];
          this.imgPosition = index;
          document.querySelector(".gallery > .light-box").style.display = "block";
+         //Added color to favorite button if the image is already in favorite
+         this.useFavData.forEach((r) => favId.push(r.id));
+         let n = favId.includes(this.searchResults[index].id);
+         if (n === true) {
+            document.querySelector(".favBtn").classList.add("alreadyFav");
+         } else {
+            document.querySelector(".favBtn").classList.remove("alreadyFav");
+         }
+         //-----------
       },
       thisFavImg(index) {
          this.favImgPosition = index;
@@ -93,6 +107,14 @@ new Vue({
       addFav(value) {
          this.useFavData.push(value);
          localStorage.setItem("fav", JSON.stringify(this.useFavData));
+      },
+      //---------------
+      //Delete favorite images from local storage
+      unFav(value) {
+         this.useFavData.splice(value, 1);
+         localStorage.setItem("fav", JSON.stringify(this.useFavData));
+         document.querySelector(".favorite > .light-box").style.display = "none";
+         console.log(this.useFavData);
       },
       //----------------
       nextFavImg() {
