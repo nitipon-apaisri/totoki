@@ -43,6 +43,9 @@ new Vue({
       async getFetch() {
          let data = await DATA.searching(this.searchInput, this.pageNumber);
          this.searchResults = [];
+         for (let i = 0; i < 12; i++) {
+            this.searchResults.shift(i);
+         }
          for (let i of data.results) {
             this.searchResults.push(i);
          }
@@ -54,7 +57,7 @@ new Vue({
          this.searchInput = query;
          let data = await DATA.searching(query, this.pageNumber);
          this.totalPages = data.total_pages;
-         for (let i = 0; i < this.searchResults.length; i++) {
+         for (let i = 0; i < 12; i++) {
             this.searchResults.shift(i);
          }
          for (let i of data.results) {
