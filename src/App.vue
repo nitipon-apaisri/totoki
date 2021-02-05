@@ -13,6 +13,22 @@ export default {
 };
 </script>
 <style lang="scss">
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  opacity: 0.5;
+  background-color: #dde0e6;
+  border: 2px solid transparent;
+  border-radius: 9px;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
 h1,
 h2,
 h3,

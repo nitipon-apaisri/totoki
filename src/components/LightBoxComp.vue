@@ -156,6 +156,10 @@ export default {
           justify-content: space-between;
           .info {
             @include img-info-details;
+            p {
+              max-height: 120px;
+              overflow: scroll;
+            }
           }
           .close-modal {
             height: fit-content;
