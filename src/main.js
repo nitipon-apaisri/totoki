@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import * as DATA from "@/api/index";
+import * as MOCK from "@/api/mock";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -23,7 +24,6 @@ new Vue({
          favData: [],
          useFavData: [],
          totalPages: 0,
-         loaded: false,
       };
    },
    beforeMount() {
@@ -31,6 +31,8 @@ new Vue({
       for (let i of this.favData[0]) {
          this.useFavData.push(i);
       }
+      let data = MOCK.fetchImg();
+      this.searchResults.push(data);
    },
    methods: {
       async getFetch() {
@@ -41,11 +43,13 @@ new Vue({
          }
       },
       async getInput(query) {
-         this.searchResults = [];
          this.pageNumber = 1;
          this.searchInput = query;
          let data = await DATA.searching(query, this.pageNumber);
          this.totalPages = data.total_pages;
+         for (let i = 0; i < this.searchResults.length; i++) {
+            this.searchResults.shift(i);
+         }
          for (let i of data.results) {
             this.searchResults.push(i);
          }

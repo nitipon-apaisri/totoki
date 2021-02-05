@@ -3,13 +3,13 @@
     <nav>
       <ul>
         <li>
-          <router-link to="/">Home</router-link>
+          <router-link to="/" @click="reset">Home</router-link>
         </li>
         <li>
-          <router-link to="/Gallery">Gallery</router-link>
+          <router-link to="/Gallery" @click="reset">Gallery</router-link>
         </li>
         <li>
-          <router-link to="/Favorite">Favorite</router-link>
+          <router-link to="/Favorite" @click="reset">Favorite</router-link>
         </li>
       </ul>
     </nav>
@@ -17,7 +17,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    reset() {
+      this.$root.loaded = false;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
