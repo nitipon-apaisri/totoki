@@ -5,3 +5,4 @@ export async function searching(query, pageNumber) {
    const data = await req.json();
    return data;
 }
+//-------------------------
