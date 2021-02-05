@@ -8,10 +8,12 @@
           class="img"
         />
         <div class="img-details">
-          <button class="close-modal" @click="hideLightBox">X</button>
           <div class="img-description">
-            <h4>Description</h4>
-            <p>{{ Img[ImgPosition].description }}</p>
+            <div class="info">
+              <h4>Description</h4>
+              <p>{{ Img[ImgPosition].description }}</p>
+            </div>
+            <button class="close-modal" @click="hideLightBox">X</button>
           </div>
           <div class="author">
             <h4>Author</h4>
@@ -38,9 +40,14 @@
             </div>
           </div>
           <hr />
-          <button @click="addFav">Fav</button>
-          <button @click="previousImg">Previous</button>
-          <button @click="nextImg">Next</button>
+          <button @click="addFav" class="favBtn">
+            <font-awesome-icon :icon="['fas', 'heart']" />
+          </button>
+          <hr />
+          <div class="next-pre">
+            <button @click="previousImg">Previous</button>
+            <button @click="nextImg">Next</button>
+          </div>
         </div>
       </div>
     </div>
@@ -90,14 +97,22 @@ export default {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   display: none;
-  .close-modal {
-    margin-left: 100%;
+  button {
+    border: 0;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+  .close-img {
+    display: flex;
+    justify-content: flex-end;
   }
   .img-card {
     box-sizing: border-box;
     padding: 40px;
     border-radius: 24px;
-    margin: 100px auto 0 auto;
+    margin: 170px auto 0 auto;
     width: 860px;
     background: #fff;
     .img-info {
@@ -121,7 +136,14 @@ export default {
         width: 320px;
         text-align: left;
         .img-description {
-          @include img-info-details;
+          display: flex;
+          justify-content: space-between;
+          .info {
+            @include img-info-details;
+          }
+          .close-modal {
+            height: fit-content;
+          }
         }
         .author {
           @include img-info-details;
@@ -132,6 +154,10 @@ export default {
           border-top: 1px solid rgba(0, 0, 0, 0.1);
           border-bottom: 1px solid rgba(255, 255, 255, 0.3);
           margin: 8px 0;
+        }
+        .next-pre {
+          display: flex;
+          justify-content: space-between;
         }
         .sub-details {
           display: flex;
@@ -146,6 +172,9 @@ export default {
             @include img-info-details;
           }
         }
+      }
+      .favBtn {
+        padding: 10px 12px;
       }
     }
   }

@@ -4,8 +4,10 @@ import router from "./router";
 import * as DATA from "@/api/index";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 library.add(faSearch);
+library.add(faHeart);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.config.productionTip = false;
@@ -59,12 +61,16 @@ new Vue({
       },
       nextPage() {
          document.querySelector(".gallery > .light-box").style.display = "none";
+         document.querySelector(".gallery > .btns > .btns-content > .preBtn").style.display = "block";
          this.pageNumber++;
          this.getFetch();
       },
       previousPage() {
          document.querySelector(".gallery > .light-box").style.display = "none";
          this.pageNumber--;
+         if (this.pageNumber == 1) {
+            document.querySelector(".gallery > .btns > .btns-content > .preBtn").style.display = "none";
+         }
          this.getFetch();
       },
       addFav(value) {

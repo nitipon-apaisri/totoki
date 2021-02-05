@@ -103,6 +103,11 @@ export default {
         line-height: 35px;
       }
       button {
+        border: 0;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 0.7rem;
+        font-weight: bold;
         margin: 0 8px;
       }
     }

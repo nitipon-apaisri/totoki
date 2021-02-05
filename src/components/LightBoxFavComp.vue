@@ -8,10 +8,12 @@
           class="img"
         />
         <div class="img-details">
-          <button class="close-modal" @click="hideLightBox">X</button>
           <div class="img-description">
-            <h4>Description</h4>
-            <p>{{ Img[ImgPosition].description }}</p>
+            <div class="info">
+              <h4>Description</h4>
+              <p>{{ Img[ImgPosition].description }}</p>
+            </div>
+            <button class="close-modal" @click="hideLightBox">X</button>
           </div>
           <div class="author">
             <h4>Author</h4>
@@ -38,8 +40,10 @@
             </div>
           </div>
           <hr />
-          <button @click="previousImg">Previous</button>
-          <button @click="nextImg">Next</button>
+          <div class="next-pre">
+            <button @click="previousImg">Previous</button>
+            <button @click="nextImg">Next</button>
+          </div>
         </div>
       </div>
     </div>
@@ -87,6 +91,13 @@ export default {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   display: none;
+  button {
+    border: 0;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
   .img-card {
     box-sizing: border-box;
     padding: 40px;
@@ -114,11 +125,16 @@ export default {
       .img-details {
         width: 320px;
         text-align: left;
-        .close-modal {
-          margin-left: 100%;
-        }
+
         .img-description {
-          @include img-info-details;
+          display: flex;
+          justify-content: space-between;
+          .info {
+            @include img-info-details;
+          }
+          .close-modal {
+            height: fit-content;
+          }
         }
         .author {
           @include img-info-details;
@@ -129,6 +145,10 @@ export default {
           border-top: 1px solid rgba(0, 0, 0, 0.1);
           border-bottom: 1px solid rgba(255, 255, 255, 0.3);
           margin: 8px 0;
+        }
+        .next-pre {
+          display: flex;
+          justify-content: space-between;
         }
         .sub-details {
           display: flex;

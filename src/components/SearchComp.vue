@@ -29,6 +29,9 @@ export default {
         document.querySelector(".searching-box > p").style.display = "block";
       } else {
         document.querySelector(".searching-box > p").style.display = "none";
+        document.querySelector(
+          ".gallery > .btns > .btns-content > .preBtn"
+        ).style.display = "none";
         this.$root.getInput(this.input);
         this.input = "";
         this.$router.push("/Gallery").catch((err) => {
@@ -49,11 +52,14 @@ export default {
   margin: auto;
   margin-bottom: 4px;
   input {
-    border-radius: 4px;
+    border-radius: 4px 0 0 4px;
     border: 1px solid #e0e0e0;
-    padding: 8px;
+    border-right: 0;
+    padding: 8px 12px;
   }
   button {
+    border-radius: 0 4px 4px 0;
+    border-left: 0;
     @extend input;
   }
   p {
