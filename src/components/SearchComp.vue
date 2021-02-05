@@ -25,7 +25,7 @@ export default {
   methods: {
     postInput() {
       if (this.input.length == 0) {
-        this.errorAlert = "Please fill any word";
+        this.errorAlert = "It's empty!";
         document.querySelector(".searching-box > p").style.display = "block";
       } else {
         document.querySelector(".searching-box > p").style.display = "none";
