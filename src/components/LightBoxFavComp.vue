@@ -15,7 +15,9 @@
               <h4>Description</h4>
               <p>{{ Img[ImgPosition].description }}</p>
             </div>
-            <button class="close-modal" @click="hideLightBox">X</button>
+            <button class="close-modal" @click="hideLightBox">
+              <font-awesome-icon :icon="['fas', 'times']" />
+            </button>
           </div>
           <div class="author">
             <h4>Author</h4>
@@ -46,8 +48,8 @@
             </div>
           </div>
           <hr />
-          <button @click="unFav" class="unFavBtn">
-            <font-awesome-icon :icon="['fas', 'times']" />
+          <button @click="unFav(Img[ImgPosition])" class="unFavBtn">
+            <font-awesome-icon :icon="['fas', 'trash-alt']" />
           </button>
           <hr />
           <div class="next-pre">
@@ -85,8 +87,8 @@ export default {
     },
   },
   methods: {
-    unFav() {
-      this.$root.unFav(this.Img[this.ImgPosition]);
+    unFav(value) {
+      this.$root.unFav(value);
     },
     hideLightBox() {
       document.querySelector(".light-box").style.display = "none";
