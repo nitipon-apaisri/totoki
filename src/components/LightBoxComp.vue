@@ -1,5 +1,5 @@
 <template>
-  <div class="light-box">
+  <div class="light-box" v-if="loaded">
     <div class="img-card">
       <div class="img-info">
         <img
@@ -59,6 +59,7 @@ export default {
   data() {
     return {
       setFavData: [],
+      loaded: false,
     };
   },
   computed: {
@@ -67,6 +68,16 @@ export default {
     },
     ImgPosition() {
       return this.$root.imgPosition;
+    },
+    Loaded() {
+      return this.$root.loaded;
+    },
+  },
+  watch: {
+    Loaded() {
+      setTimeout(() => {
+        this.loaded = true;
+      }, 100);
     },
   },
   methods: {

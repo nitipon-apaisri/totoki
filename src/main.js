@@ -23,6 +23,7 @@ new Vue({
          favData: [],
          useFavData: [],
          totalPages: 0,
+         loaded: false,
       };
    },
    beforeMount() {

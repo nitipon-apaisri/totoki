@@ -33,6 +33,7 @@ export default {
         this.$router.push("/Gallery").catch((err) => {
           err;
         });
+        this.$root.loaded = true;
         document.querySelector(".searching-box > p").style.display = "none";
         document.querySelector(
           ".gallery > .btns > .btns-content > .preBtn"
