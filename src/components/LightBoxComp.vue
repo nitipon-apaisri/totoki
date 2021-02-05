@@ -2,11 +2,13 @@
   <div class="light-box">
     <div class="img-card">
       <div class="img-info">
-        <img
-          :src="Img[ImgPosition].urls.small"
-          :alt="Img[ImgPosition].alt_description"
-          class="img"
-        />
+        <a :href="Img[ImgPosition].links.html">
+          <img
+            :src="Img[ImgPosition].urls.small"
+            :alt="Img[ImgPosition].alt_description"
+            class="img"
+          />
+        </a>
         <div class="img-details">
           <div class="img-description">
             <div class="info">
@@ -17,10 +19,14 @@
           </div>
           <div class="author">
             <h4>Author</h4>
-            <p>
-              {{ Img[ImgPosition].user.first_name }}
-              {{ Img[ImgPosition].user.last_name }}
-            </p>
+            <div class="author-info">
+              <a :href="Img[ImgPosition].user.links.html">
+                {{ Img[ImgPosition].user.first_name }}
+                {{ Img[ImgPosition].user.last_name }}
+              </a>
+              <h6>On</h6>
+              <a href="https://unsplash.com/">Unsplash</a>
+            </div>
           </div>
           <hr />
           <div class="sub-details">
@@ -122,18 +128,24 @@ export default {
     .img-info {
       display: flex;
       justify-content: space-between;
-      .img {
-        border-radius: 8px;
-        box-sizing: border-box;
-        width: 400px;
-        height: 100%;
-        background-repeat: no-repeat;
-        background-size: cover;
+      a {
+        .img {
+          border-radius: 8px;
+          box-sizing: border-box;
+          width: 100%;
+          height: 100%;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
       }
       @mixin img-info-details {
         line-height: 1.5rem;
         p {
           font-size: 0.9rem;
+        }
+        a {
+          font-size: 0.9rem;
+          color: #333;
         }
       }
       .img-details {
@@ -151,6 +163,13 @@ export default {
         }
         .author {
           @include img-info-details;
+          .author-info {
+            h6 {
+              line-height: 25px;
+              margin: 0 4px;
+            }
+            display: flex;
+          }
         }
         hr {
           border: 0;

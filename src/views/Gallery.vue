@@ -11,6 +11,7 @@
             }"
             class="img"
             @click="thisImg(index)"
+            :alt="img.alt_description"
           ></div>
         </li>
       </ul>
