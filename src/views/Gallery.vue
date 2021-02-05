@@ -19,6 +19,8 @@
       <div class="btns-content">
         <button @click="previousPage" class="preBtn">Previous</button>
         <p>{{ PageNumber }}</p>
+        <p>/</p>
+        <p>{{ TotalPages }}</p>
         <button @click="nextPage" class="nextBtn">Next</button>
       </div>
     </div>
@@ -52,6 +54,9 @@ export default {
     },
     PageNumber() {
       return this.$root.pageNumber;
+    },
+    TotalPages() {
+      return this.$root.totalPages;
     },
   },
 };
@@ -91,6 +96,12 @@ export default {
     .btns-content {
       justify-content: center;
       display: flex;
+      p {
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin: 0 2px;
+        line-height: 35px;
+      }
       button {
         margin: 0 8px;
       }

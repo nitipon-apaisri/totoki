@@ -20,6 +20,7 @@ new Vue({
          favImgPosition: 0,
          favData: [],
          useFavData: [],
+         totalPages: 0,
       };
    },
    beforeMount() {
@@ -41,6 +42,7 @@ new Vue({
          this.pageNumber = 1;
          this.searchInput = query;
          let data = await DATA.searching(query, this.pageNumber);
+         this.totalPages = data.total_pages;
          for (let i of data.results) {
             this.searchResults.push(i);
          }
