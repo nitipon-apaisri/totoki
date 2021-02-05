@@ -1,5 +1,5 @@
 <template>
-  <div class="light-box">
+  <div class="light-box" v-if="loaded">
     <div class="img-card">
       <div class="img-info">
         <a :href="Img[ImgPosition].links.html">
@@ -46,6 +46,10 @@
             </div>
           </div>
           <hr />
+          <button @click="unFav" class="unFavBtn">
+            <font-awesome-icon :icon="['fas', 'times']" />
+          </button>
+          <hr />
           <div class="next-pre">
             <button @click="previousImg">Previous</button>
             <button @click="nextImg">Next</button>
@@ -62,7 +66,15 @@ export default {
     return {
       setFavData: [],
       imgPos: 0,
+      loaded: false,
     };
+  },
+  beforeMount() {
+    if (this.Img.length >= 1) {
+      this.loaded = true;
+    } else {
+      this.loaded = false;
+    }
   },
   computed: {
     Img() {
@@ -73,6 +85,9 @@ export default {
     },
   },
   methods: {
+    unFav() {
+      this.$root.unFav(this.Img[this.ImgPosition]);
+    },
     hideLightBox() {
       document.querySelector(".light-box").style.display = "none";
     },
@@ -186,6 +201,9 @@ export default {
             @include img-info-details;
           }
         }
+      }
+      .unFavBtn {
+        padding: 10px 12px;
       }
     }
   }

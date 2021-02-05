@@ -7,9 +7,11 @@ import * as MOCK from "@/api/mock";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 library.add(faSearch);
 library.add(faHeart);
+library.add(faTimes);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 //--------
 Vue.config.productionTip = false;
@@ -93,6 +95,13 @@ new Vue({
       addFav(value) {
          this.useFavData.push(value);
          localStorage.setItem("fav", JSON.stringify(this.useFavData));
+      },
+      //---------------
+      //Delete favorite images from local storage
+      unFav(value) {
+         this.useFavData.splice(value, 1);
+         localStorage.setItem("fav", JSON.stringify(this.useFavData));
+         console.log(this.useFavData);
       },
       //----------------
       nextFavImg() {

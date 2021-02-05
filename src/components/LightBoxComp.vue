@@ -78,7 +78,6 @@ export default {
       return this.$root.loaded;
     },
   },
-
   methods: {
     hideLightBox() {
       document.querySelector(".light-box").style.display = "none";
@@ -97,6 +96,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.alreadyFav {
+  color: #fc5185;
+}
 .light-box {
   position: fixed;
   z-index: 1;
