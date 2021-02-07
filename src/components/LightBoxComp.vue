@@ -85,6 +85,7 @@ export default {
       document.querySelector(".light-box").style.display = "none";
     },
     addFav() {
+      document.querySelector(".favBtn").classList.add("alreadyFav");
       this.$root.addFav(this.Img[this.ImgPosition]);
     },
     nextImg() {
