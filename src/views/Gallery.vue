@@ -41,6 +41,7 @@ export default {
   mounted() {
     if (this.Images.length >= 12) {
       document.querySelector(".gallery > .content").style.display = "block";
+      document.querySelector(".gallery > .btns").style.display = "block";
     }
   },
   methods: {
