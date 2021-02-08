@@ -57,6 +57,9 @@ export default {
       document.querySelector(".gallery > .content").style.display = "block";
       this.displayBtns = true;
     }
+    if (this.PageNumber != 1) {
+      this.previousBtn = true;
+    }
   },
   methods: {
     nextPage() {
