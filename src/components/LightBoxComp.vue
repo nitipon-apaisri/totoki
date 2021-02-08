@@ -56,10 +56,11 @@
             </div>
           </div>
           <hr />
-          <button @click="addFav" class="favBtn">
+          <button @click="addFav(Img[ImgPosition])" class="favBtn">
             <font-awesome-icon :icon="['fas', 'heart']" />
           </button>
           <hr />
+          height:
           <div class="next-pre">
             <button @click="previousImg">Previous</button>
             <button @click="nextImg">Next</button>
@@ -92,9 +93,9 @@ export default {
     hideLightBox() {
       document.querySelector(".light-box").style.display = "none";
     },
-    addFav() {
+    addFav(value) {
       document.querySelector(".favBtn").classList.add("alreadyFav");
-      this.$root.addFav(this.Img[this.ImgPosition]);
+      this.$root.addFav(value);
     },
     nextImg() {
       this.$root.nextImg();

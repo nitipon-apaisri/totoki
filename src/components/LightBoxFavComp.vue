@@ -3,11 +3,14 @@
     <div class="img-card">
       <div class="img-info">
         <a :href="Img[ImgPosition].links.html">
-          <img
-            :src="Img[ImgPosition].urls.small"
-            :alt="Img[ImgPosition].alt_description"
+          <div
+            :style="{
+              'background-image': 'url(' + Img[ImgPosition].urls.full + ')',
+            }"
             class="img"
-          />
+            @click="thisImg(index)"
+            :alt="Img[ImgPosition].alt_description"
+          ></div>
         </a>
         <div class="img-details">
           <div class="img-description">
@@ -126,7 +129,7 @@ export default {
     padding: 40px;
     border-radius: 24px;
     margin: 100px auto 0 auto;
-    width: 860px;
+    width: 960px;
     background: #fff;
     .img-info {
       display: flex;
@@ -135,8 +138,8 @@ export default {
         .img {
           border-radius: 8px;
           box-sizing: border-box;
-          width: 100%;
-          height: 100%;
+          width: 500px;
+          height: 350px;
           background-repeat: no-repeat;
           background-size: cover;
         }
