@@ -93,6 +93,7 @@ export default {
 <style lang="scss" scoped>
 .gallery {
   max-width: 1440px;
+  padding: 0 32px;
   margin: auto;
   h1 {
     margin: 20px 0 20px 0;
