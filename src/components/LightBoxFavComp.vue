@@ -48,7 +48,7 @@
             </div>
           </div>
           <hr />
-          <button @click="unFav(Img[ImgPosition])" class="unFavBtn">
+          <button @click="unFav(ImgPosition)" class="unFavBtn">
             <font-awesome-icon :icon="['fas', 'trash-alt']" />
           </button>
           <hr />

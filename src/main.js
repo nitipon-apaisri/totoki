@@ -114,7 +114,6 @@ new Vue({
          this.useFavData.splice(value, 1);
          localStorage.setItem("fav", JSON.stringify(this.useFavData));
          document.querySelector(".favorite > .light-box").style.display = "none";
-         console.log(this.useFavData);
       },
       //----------------
       nextFavImg() {
