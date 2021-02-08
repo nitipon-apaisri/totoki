@@ -68,7 +68,6 @@ new Vue({
             this.searchResults.push(i);
          }
          document.querySelector(".gallery > .content").style.display = "block";
-         document.querySelector(".gallery > .btns").style.display = "block";
       },
       //---------------
       thisImg(index) {
@@ -91,7 +90,6 @@ new Vue({
       },
       nextPage() {
          document.querySelector(".gallery > .light-box").style.display = "none";
-         document.querySelector(".gallery > .btns > .btns-content > .preBtn").style.display = "block";
          this.pageNumber++;
          this.getFetch();
       },

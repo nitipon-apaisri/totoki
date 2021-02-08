@@ -34,9 +34,6 @@ export default {
           err;
         });
         document.querySelector(".searching-box > p").style.display = "none";
-        document.querySelector(
-          ".gallery > .btns > .btns-content > .preBtn"
-        ).style.display = "none";
       }
     },
   },
