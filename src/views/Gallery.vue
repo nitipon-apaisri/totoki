@@ -16,13 +16,15 @@
         </li>
       </ul>
     </div>
-    <div class="btns">
+    <div class="btns" v-if="displayBtns">
       <div class="btns-content">
-        <button @click="previousPage" class="preBtn">Previous</button>
+        <button @click="previousPage" class="preBtn" v-if="previousBtn">
+          Previous
+        </button>
         <p>{{ PageNumber }}</p>
         <p>/</p>
         <p>{{ TotalPages }}</p>
-        <button @click="nextPage" class="nextBtn">Next</button>
+        <button @click="nextPage" class="nextBtn" v-if="nextBtn">Next</button>
       </div>
     </div>
     <LightBox />
@@ -38,14 +40,24 @@ export default {
     Searching,
     LightBox,
   },
-  mounted() {
+  data() {
+    return {
+      displayBtns: false,
+      previousBtn: false,
+      nextBtn: true,
+    };
+  },
+  updated() {
     if (this.Images.length >= 12) {
-      document.querySelector(".gallery > .content").style.display = "block";
-      document.querySelector(".gallery > .btns").style.display = "block";
+      this.displayBtns = true;
     }
   },
   methods: {
     nextPage() {
+      this.previousBtn = true;
+      if (this.PageNumber === this.$root.totalPages) {
+        this.nextBtn = false;
+      }
       this.$root.nextPage();
     },
     previousPage() {
@@ -99,7 +111,6 @@ export default {
     }
   }
   .btns {
-    display: none;
     .btns-content {
       justify-content: center;
       display: flex;
