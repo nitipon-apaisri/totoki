@@ -3,14 +3,9 @@
     <div class="img-card">
       <div class="img-info">
         <a :href="Img[ImgPosition].links.html">
-          <!-- <img
-            :src="Img[ImgPosition].urls.small"
-            :alt="Img[ImgPosition].alt_description"
-            class="img"
-          /> -->
           <div
             :style="{
-              'background-image': 'url(' + Img[ImgPosition].urls.full + ')',
+              'background-image': 'url(' + Img[ImgPosition].urls.regular + ')',
             }"
             class="img"
             @click="thisImg(index)"
@@ -60,7 +55,6 @@
             <font-awesome-icon :icon="['fas', 'heart']" />
           </button>
           <hr />
-          height:
           <div class="next-pre">
             <button @click="previousImg">Previous</button>
             <button @click="nextImg">Next</button>
