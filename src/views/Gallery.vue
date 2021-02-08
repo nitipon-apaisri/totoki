@@ -52,6 +52,12 @@ export default {
       this.displayBtns = true;
     }
   },
+  mounted() {
+    if (this.Images.length >= 12) {
+      document.querySelector(".gallery > .content").style.display = "block";
+      this.displayBtns = true;
+    }
+  },
   methods: {
     nextPage() {
       this.previousBtn = true;
