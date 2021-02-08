@@ -40,6 +40,7 @@ export default {
 <style lang="scss" scoped>
 .favorite {
   max-width: 1440px;
+  padding: 0 32px;
   margin: auto;
   .content {
     ul {
