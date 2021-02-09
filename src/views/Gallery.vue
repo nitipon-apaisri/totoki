@@ -11,15 +11,20 @@
             }"
             class="img"
             @click="thisImg(index)"
+            :alt="img.alt_description"
           ></div>
         </li>
       </ul>
     </div>
-    <div class="btns">
+    <div class="btns" v-if="displayBtns">
       <div class="btns-content">
-        <button @click="previousPage" class="preBtn">Previous</button>
+        <button @click="previousPage" class="preBtn" v-if="previousBtn">
+          Previous
+        </button>
         <p>{{ PageNumber }}</p>
-        <button @click="nextPage" class="nextBtn">Next</button>
+        <p>/</p>
+        <p>{{ TotalPages }}</p>
+        <button @click="nextPage" class="nextBtn" v-if="nextBtn">Next</button>
       </div>
     </div>
     <LightBox />
@@ -35,8 +40,33 @@ export default {
     Searching,
     LightBox,
   },
+  data() {
+    return {
+      displayBtns: false,
+      previousBtn: false,
+      nextBtn: true,
+    };
+  },
+  updated() {
+    if (this.Images.length >= 12) {
+      this.displayBtns = true;
+    }
+  },
+  mounted() {
+    if (this.Images.length >= 12) {
+      document.querySelector(".gallery > .content").style.display = "block";
+      this.displayBtns = true;
+    }
+    if (this.PageNumber != 1) {
+      this.previousBtn = true;
+    }
+  },
   methods: {
     nextPage() {
+      this.previousBtn = true;
+      if (this.PageNumber === this.$root.totalPages) {
+        this.nextBtn = false;
+      }
       this.$root.nextPage();
     },
     previousPage() {
@@ -53,6 +83,9 @@ export default {
     PageNumber() {
       return this.$root.pageNumber;
     },
+    TotalPages() {
+      return this.$root.totalPages;
+    },
   },
 };
 </script>
@@ -60,6 +93,7 @@ export default {
 <style lang="scss" scoped>
 .gallery {
   max-width: 1440px;
+  padding: 0 32px;
   margin: auto;
   h1 {
     margin: 20px 0 20px 0;
@@ -87,11 +121,21 @@ export default {
     }
   }
   .btns {
-    display: none;
     .btns-content {
       justify-content: center;
       display: flex;
+      p {
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin: 0 2px;
+        line-height: 35px;
+      }
       button {
+        border: 0;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 0.7rem;
+        font-weight: bold;
         margin: 0 8px;
       }
     }
@@ -99,6 +143,33 @@ export default {
 
   .img:hover {
     opacity: 0.3;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .gallery {
+    .content {
+      ul {
+        li {
+          .img {
+            height: 234px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .gallery {
+    .content {
+      ul {
+        grid-template-columns: repeat(6, 1fr);
+        li {
+          .img {
+            height: 234px;
+          }
+        }
+      }
+    }
   }
 }
 </style>

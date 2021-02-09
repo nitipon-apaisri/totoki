@@ -2,23 +2,36 @@
   <div class="light-box">
     <div class="img-card">
       <div class="img-info">
-        <img
-          :src="Img[ImgPosition].urls.small"
-          :alt="Img[ImgPosition].alt_description"
-          class="img"
-        />
+        <a :href="Img[ImgPosition].links.html">
+          <div
+            :style="{
+              'background-image': 'url(' + Img[ImgPosition].urls.regular + ')',
+            }"
+            class="img"
+            @click="thisImg(index)"
+            :alt="Img[ImgPosition].alt_description"
+          ></div>
+        </a>
         <div class="img-details">
-          <button class="close-modal" @click="hideLightBox">X</button>
           <div class="img-description">
-            <h4>Description</h4>
-            <p>{{ Img[ImgPosition].description }}</p>
+            <div class="info">
+              <h4>Description</h4>
+              <p>{{ Img[ImgPosition].description }}</p>
+            </div>
+            <button class="close-modal" @click="hideLightBox">
+              <font-awesome-icon :icon="['fas', 'times']" />
+            </button>
           </div>
           <div class="author">
             <h4>Author</h4>
-            <p>
-              {{ Img[ImgPosition].user.first_name }}
-              {{ Img[ImgPosition].user.last_name }}
-            </p>
+            <div class="author-info">
+              <a :href="Img[ImgPosition].user.links.html">
+                {{ Img[ImgPosition].user.first_name }}
+                {{ Img[ImgPosition].user.last_name }}
+              </a>
+              <h6>On</h6>
+              <a href="https://unsplash.com/">Unsplash</a>
+            </div>
           </div>
           <hr />
           <div class="sub-details">
@@ -38,9 +51,14 @@
             </div>
           </div>
           <hr />
-          <button @click="addFav">Fav</button>
-          <button @click="previousImg">Previous</button>
-          <button @click="nextImg">Next</button>
+          <button @click="addFav(Img[ImgPosition])" class="favBtn">
+            <font-awesome-icon :icon="['fas', 'heart']" />
+          </button>
+          <hr />
+          <div class="next-pre">
+            <button @click="previousImg">Previous</button>
+            <button @click="nextImg">Next</button>
+          </div>
         </div>
       </div>
     </div>
@@ -61,13 +79,17 @@ export default {
     ImgPosition() {
       return this.$root.imgPosition;
     },
+    Loaded() {
+      return this.$root.loaded;
+    },
   },
   methods: {
     hideLightBox() {
       document.querySelector(".light-box").style.display = "none";
     },
-    addFav() {
-      this.$root.addFav(this.Img[this.ImgPosition]);
+    addFav(value) {
+      document.querySelector(".favBtn").classList.add("alreadyFav");
+      this.$root.addFav(value);
     },
     nextImg() {
       this.$root.nextImg();
@@ -80,6 +102,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.alreadyFav {
+  color: #fc5185;
+}
 .light-box {
   position: fixed;
   z-index: 1;
@@ -90,41 +115,73 @@ export default {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   display: none;
-  .close-modal {
-    margin-left: 100%;
+  button {
+    border: 0;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+  .close-img {
+    display: flex;
+    justify-content: flex-end;
   }
   .img-card {
     box-sizing: border-box;
     padding: 40px;
     border-radius: 24px;
-    margin: 100px auto 0 auto;
-    width: 860px;
+    margin: 170px auto 0 auto;
+    width: 960px;
     background: #fff;
     .img-info {
       display: flex;
       justify-content: space-between;
-      .img {
-        border-radius: 8px;
-        box-sizing: border-box;
-        width: 400px;
-        height: 100%;
-        background-repeat: no-repeat;
-        background-size: cover;
+      a {
+        .img {
+          border-radius: 8px;
+          box-sizing: border-box;
+          width: 500px;
+          height: 350px;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
       }
       @mixin img-info-details {
         line-height: 1.5rem;
         p {
           font-size: 0.9rem;
         }
+        a {
+          font-size: 0.9rem;
+          color: #333;
+        }
       }
       .img-details {
         width: 320px;
         text-align: left;
         .img-description {
-          @include img-info-details;
+          display: flex;
+          justify-content: space-between;
+          .info {
+            @include img-info-details;
+            p {
+              max-height: 120px;
+              overflow: scroll;
+            }
+          }
+          .close-modal {
+            height: fit-content;
+          }
         }
         .author {
           @include img-info-details;
+          .author-info {
+            h6 {
+              line-height: 25px;
+              margin: 0 4px;
+            }
+            display: flex;
+          }
         }
         hr {
           border: 0;
@@ -132,6 +189,10 @@ export default {
           border-top: 1px solid rgba(0, 0, 0, 0.1);
           border-bottom: 1px solid rgba(255, 255, 255, 0.3);
           margin: 8px 0;
+        }
+        .next-pre {
+          display: flex;
+          justify-content: space-between;
         }
         .sub-details {
           display: flex;
@@ -147,7 +208,17 @@ export default {
           }
         }
       }
+      .favBtn {
+        padding: 10px 12px;
+      }
     }
   }
+}
+@media screen and (max-width: 1000px) {
+  // .light-box {
+  //   .img-card {
+
+  //   }
+  // }
 }
 </style>

@@ -21,7 +21,7 @@ export default {
   max-width: 1440px;
   margin: auto;
   h1 {
-    margin: 50px 0;
+    margin: 50px 0 20px 0;
   }
 }
 </style>
