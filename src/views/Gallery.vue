@@ -78,7 +78,7 @@ export default {
   },
   computed: {
     Images() {
-      return this.$root.searchResults;
+      return this.$store.state.searchResults;
     },
     PageNumber() {
       return this.$root.pageNumber;

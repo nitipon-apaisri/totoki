@@ -10,7 +10,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import store from './store'
+import store from "./store";
 library.add(faSearch);
 library.add(faHeart);
 library.add(faTimes);
@@ -60,16 +60,17 @@ new Vue({
       //--------------------
       //Get data from unsplash api
       async getInput(query) {
+         this.$store.dispatch("getInput", query);
          this.pageNumber = 1;
          this.searchInput = query;
-         let data = await DATA.searching(query, this.pageNumber);
-         this.totalPages = data.total_pages;
-         for (let i = 0; i < 12; i++) {
-            this.searchResults.shift(i);
-         }
-         for (let i of data.results) {
-            this.searchResults.push(i);
-         }
+         // let data = await DATA.searching(query, this.pageNumber);
+         // this.totalPages = data.total_pages;
+         // for (let i = 0; i < 12; i++) {
+         //    this.searchResults.shift(i);
+         // }
+         // for (let i of data.results) {
+         //    this.searchResults.push(i);
+         // }
          document.querySelector(".gallery > .content").style.display = "block";
       },
       //---------------
@@ -149,5 +150,5 @@ new Vue({
 
    router,
    store,
-   render: (h) => h(App)
+   render: (h) => h(App),
 }).$mount("#app");
