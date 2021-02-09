@@ -60,7 +60,6 @@
             <font-awesome-icon :icon="['fas', 'heart']" />
           </button>
           <hr />
-          height:
           <div class="next-pre">
             <button @click="previousImg">Previous</button>
             <button @click="nextImg">Next</button>
@@ -219,5 +218,12 @@ export default {
       }
     }
   }
+}
+@media screen and (max-width: 1000px) {
+  // .light-box {
+  //   .img-card {
+
+  //   }
+  // }
 }
 </style>
