@@ -10,6 +10,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import store from './store'
 library.add(faSearch);
 library.add(faHeart);
 library.add(faTimes);
@@ -30,6 +31,7 @@ new Vue({
          totalPages: 0,
       };
    },
+
    beforeMount() {
       //Get data from localStorage
       this.favData.push(JSON.parse(localStorage.getItem("fav")));
@@ -42,6 +44,7 @@ new Vue({
       this.searchResults.push(data);
       //--------------------
    },
+
    methods: {
       //Function for fetching unsplsh api
       async getFetch() {
@@ -143,6 +146,8 @@ new Vue({
          }
       },
    },
+
    router,
-   render: (h) => h(App),
+   store,
+   render: (h) => h(App)
 }).$mount("#app");

@@ -141,4 +141,31 @@ export default {
     }
   }
 }
+@media screen and (max-width: 1024px) {
+  .gallery {
+    .content {
+      ul {
+        li {
+          .img {
+            height: 234px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .gallery {
+    .content {
+      ul {
+        grid-template-columns: repeat(6, 1fr);
+        li {
+          .img {
+            height: 234px;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

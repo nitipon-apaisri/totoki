@@ -214,4 +214,11 @@ export default {
     }
   }
 }
+@media screen and (max-width: 1000px) {
+  // .light-box {
+  //   .img-card {
+
+  //   }
+  // }
+}
 </style>
