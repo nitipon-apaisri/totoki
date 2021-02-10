@@ -81,10 +81,10 @@ export default {
       return this.$store.state.searchResults;
     },
     PageNumber() {
-      return this.$root.pageNumber;
+      return this.$store.state.pageNumber;
     },
     TotalPages() {
-      return this.$root.totalPages;
+      return this.$store.state.totalPages;
     },
   },
 };

@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     Img() {
-      return this.$root.searchResults;
+      return this.$store.state.searchResults;
     },
     ImgPosition() {
       return this.$root.imgPosition;

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import * as DATA from "@/api/index";
+// import * as DATA from "@/api/index";
 import * as MOCK from "@/api/mock";
 //Import and use icon from front awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -47,30 +47,26 @@ new Vue({
 
    methods: {
       //Function for fetching unsplsh api
-      async getFetch() {
-         let data = await DATA.searching(this.searchInput, this.pageNumber);
-         this.searchResults = [];
-         for (let i = 0; i < 12; i++) {
-            this.searchResults.shift(i);
-         }
-         for (let i of data.results) {
-            this.searchResults.push(i);
-         }
-      },
+      // async getFetch() {
+      //    let data = await DATA.searching(this.searchInput, this.pageNumber);
+      //    this.searchResults = [];
+      //    for (let i = 0; i < 12; i++) {
+      //       this.searchResults.shift(i);
+      //    }
+      //    for (let i of data.results) {
+      //       this.searchResults.push(i);
+      //    }
+      // },
       //--------------------
       //Get data from unsplash api
       async getInput(query) {
-         this.$store.dispatch("getInput", query);
-         this.pageNumber = 1;
-         this.searchInput = query;
-         // let data = await DATA.searching(query, this.pageNumber);
-         // this.totalPages = data.total_pages;
          // for (let i = 0; i < 12; i++) {
          //    this.searchResults.shift(i);
          // }
-         // for (let i of data.results) {
-         //    this.searchResults.push(i);
-         // }
+         this.$store.dispatch("getInput", query);
+         // this.searchInput = query;
+         // let data = await DATA.searching(query, this.pageNumber);
+         // this.totalPages = data.total_pages;
          document.querySelector(".gallery > .content").style.display = "block";
       },
       //---------------
@@ -80,7 +76,7 @@ new Vue({
          document.querySelector(".gallery > .light-box").style.display = "block";
          //Added color to favorite button if the image is already in favorite
          this.useFavData.forEach((r) => favId.push(r.id));
-         let n = favId.includes(this.searchResults[index].id);
+         let n = favId.includes(this.$store.state.searchResults[index].id);
          if (n === true) {
             document.querySelector(".favBtn").classList.add("alreadyFav");
          } else {
@@ -93,17 +89,16 @@ new Vue({
          document.querySelector(".favorite > .light-box").style.display = "block";
       },
       nextPage() {
+         this.$store.dispatch("nextPage");
+         document.querySelector(".gallery > .btns > .btns-content > .preBtn").style.display = "block";
          document.querySelector(".gallery > .light-box").style.display = "none";
-         this.pageNumber++;
-         this.getFetch();
       },
       previousPage() {
          document.querySelector(".gallery > .light-box").style.display = "none";
-         this.pageNumber--;
-         if (this.pageNumber == 1) {
+         this.$store.dispatch("previousPage");
+         if (this.$store.state.pageNumber == 1) {
             document.querySelector(".gallery > .btns > .btns-content > .preBtn").style.display = "none";
          }
-         this.getFetch();
       },
       //Set favorite images to local storage
       addFav(value) {
