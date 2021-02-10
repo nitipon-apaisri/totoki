@@ -1,8 +1,8 @@
 <template>
   <div class="gallery">
     <h1>TOTOKI</h1>
-    <Searching />
-    <div class="content">
+    <Searching @showContent="showContent" />
+    <div class="content" v-if="displayContent">
       <ul>
         <li v-for="(img, index) in Images" :key="index">
           <div
@@ -27,10 +27,9 @@
         <button @click="nextPage" class="nextBtn" v-if="nextBtn">Next</button>
       </div>
     </div>
-    <LightBox />
+    <LightBox v-if="lightBox" />
   </div>
 </template>
-
 <script>
 import LightBox from "@/components/LightBoxComp";
 import Searching from "@/components/SearchComp";
@@ -45,23 +44,32 @@ export default {
       displayBtns: false,
       previousBtn: false,
       nextBtn: true,
+      lightBox: false,
+      displayContent: false,
     };
   },
   updated() {
     if (this.Images.length >= 12) {
       this.displayBtns = true;
-    }
-  },
-  mounted() {
-    if (this.Images.length >= 12) {
-      document.querySelector(".gallery > .content").style.display = "block";
-      this.displayBtns = true;
+      this.lightBox = true;
     }
     if (this.PageNumber != 1) {
       this.previousBtn = true;
+    } else {
+      this.previousBtn = false;
+    }
+  },
+
+  mounted() {
+    if (this.Images.length >= 12) {
+      this.displayBtns = true;
+      this.displayContent = true;
     }
   },
   methods: {
+    showContent() {
+      this.displayContent = true;
+    },
     nextPage() {
       this.previousBtn = true;
       if (this.PageNumber === this.$root.totalPages) {
@@ -78,18 +86,17 @@ export default {
   },
   computed: {
     Images() {
-      return this.$root.searchResults;
+      return this.$store.state.searchResults;
     },
     PageNumber() {
-      return this.$root.pageNumber;
+      return this.$store.state.pageNumber;
     },
     TotalPages() {
-      return this.$root.totalPages;
+      return this.$store.state.totalPages;
     },
   },
 };
 </script>
-
 <style lang="scss" scoped>
 .gallery {
   max-width: 1440px;
@@ -99,7 +106,6 @@ export default {
     margin: 20px 0 20px 0;
   }
   .content {
-    display: none;
     ul {
       padding: 0;
       display: grid;

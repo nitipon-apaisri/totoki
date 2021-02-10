@@ -64,7 +64,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -74,7 +73,7 @@ export default {
   },
   computed: {
     Img() {
-      return this.$root.searchResults;
+      return this.$store.state.searchResults;
     },
     ImgPosition() {
       return this.$root.imgPosition;
@@ -100,7 +99,6 @@ export default {
   },
 };
 </script>
-
 <style lang="scss" scoped>
 .alreadyFav {
   color: #fc5185;
