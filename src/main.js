@@ -1,8 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import * as DATA from "@/api/index";
-import * as MOCK from "@/api/mock";
 //Import and use icon from front awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +8,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import store from './store'
+import store from "./store";
 library.add(faSearch);
 library.add(faHeart);
 library.add(faTimes);
@@ -21,17 +19,12 @@ Vue.config.productionTip = false;
 new Vue({
    data() {
       return {
-         searchResults: [],
-         pageNumber: 1,
-         searchInput: "",
          imgPosition: 0,
          favImgPosition: 0,
          favData: [],
          useFavData: [],
-         totalPages: 0,
       };
    },
-
    beforeMount() {
       //Get data from localStorage
       this.favData.push(JSON.parse(localStorage.getItem("fav")));
@@ -39,38 +32,10 @@ new Vue({
          this.useFavData.push(i);
       }
       //--------------------
-      //Get mock data from mock.josn for resolve the warning of ligthbox
-      let data = MOCK.fetchImg();
-      this.searchResults.push(data);
-      //--------------------
    },
-
    methods: {
-      //Function for fetching unsplsh api
-      async getFetch() {
-         let data = await DATA.searching(this.searchInput, this.pageNumber);
-         this.searchResults = [];
-         for (let i = 0; i < 12; i++) {
-            this.searchResults.shift(i);
-         }
-         for (let i of data.results) {
-            this.searchResults.push(i);
-         }
-      },
-      //--------------------
-      //Get data from unsplash api
       async getInput(query) {
-         this.pageNumber = 1;
-         this.searchInput = query;
-         let data = await DATA.searching(query, this.pageNumber);
-         this.totalPages = data.total_pages;
-         for (let i = 0; i < 12; i++) {
-            this.searchResults.shift(i);
-         }
-         for (let i of data.results) {
-            this.searchResults.push(i);
-         }
-         document.querySelector(".gallery > .content").style.display = "block";
+         this.$store.dispatch("getInput", query);
       },
       //---------------
       thisImg(index) {
@@ -79,7 +44,7 @@ new Vue({
          document.querySelector(".gallery > .light-box").style.display = "block";
          //Added color to favorite button if the image is already in favorite
          this.useFavData.forEach((r) => favId.push(r.id));
-         let n = favId.includes(this.searchResults[index].id);
+         let n = favId.includes(this.$store.state.searchResults[index].id);
          if (n === true) {
             document.querySelector(".favBtn").classList.add("alreadyFav");
          } else {
@@ -92,17 +57,10 @@ new Vue({
          document.querySelector(".favorite > .light-box").style.display = "block";
       },
       nextPage() {
-         document.querySelector(".gallery > .light-box").style.display = "none";
-         this.pageNumber++;
-         this.getFetch();
+         this.$store.dispatch("nextPage");
       },
       previousPage() {
-         document.querySelector(".gallery > .light-box").style.display = "none";
-         this.pageNumber--;
-         if (this.pageNumber == 1) {
-            document.querySelector(".gallery > .btns > .btns-content > .preBtn").style.display = "none";
-         }
-         this.getFetch();
+         this.$store.dispatch("previousPage");
       },
       //Set favorite images to local storage
       addFav(value) {
@@ -146,8 +104,7 @@ new Vue({
          }
       },
    },
-
    router,
    store,
-   render: (h) => h(App)
+   render: (h) => h(App),
 }).$mount("#app");

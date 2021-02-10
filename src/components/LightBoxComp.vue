@@ -3,14 +3,9 @@
     <div class="img-card">
       <div class="img-info">
         <a :href="Img[ImgPosition].links.html">
-          <!-- <img
-            :src="Img[ImgPosition].urls.small"
-            :alt="Img[ImgPosition].alt_description"
-            class="img"
-          /> -->
           <div
             :style="{
-              'background-image': 'url(' + Img[ImgPosition].urls.full + ')',
+              'background-image': 'url(' + Img[ImgPosition].urls.regular + ')',
             }"
             class="img"
             @click="thisImg(index)"
@@ -69,7 +64,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -79,7 +73,7 @@ export default {
   },
   computed: {
     Img() {
-      return this.$root.searchResults;
+      return this.$store.state.searchResults;
     },
     ImgPosition() {
       return this.$root.imgPosition;
@@ -105,7 +99,6 @@ export default {
   },
 };
 </script>
-
 <style lang="scss" scoped>
 .alreadyFav {
   color: #fc5185;

@@ -13,7 +13,6 @@
     <p>{{ errorAlert }}</p>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -35,11 +34,11 @@ export default {
         });
         document.querySelector(".searching-box > p").style.display = "none";
       }
+      this.$emit("showContent");
     },
   },
 };
 </script>
-
 <style lang="scss" scoped>
 @mixin placeholder {
   font-size: 0.7rem;
