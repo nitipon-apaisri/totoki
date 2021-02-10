@@ -59,11 +59,10 @@ export default {
       this.previousBtn = false;
     }
   },
-
   mounted() {
-    if (this.Images.length >= 12) {
+    this.displayContent = true;
+    if (this.Images.length >= 1) {
       this.displayBtns = true;
-      this.displayContent = true;
     }
   },
   methods: {
