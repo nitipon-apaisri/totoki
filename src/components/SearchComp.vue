@@ -29,12 +29,12 @@ export default {
       } else {
         this.$root.getInput(this.input);
         this.input = "";
+        this.$emit("showContent");
         this.$router.push("/Gallery").catch((err) => {
           err;
         });
         document.querySelector(".searching-box > p").style.display = "none";
       }
-      this.$emit("showContent");
     },
   },
 };
