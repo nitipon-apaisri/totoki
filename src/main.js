@@ -1,8 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-// import * as DATA from "@/api/index";
-import * as MOCK from "@/api/mock";
 //Import and use icon from front awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -21,17 +19,12 @@ Vue.config.productionTip = false;
 new Vue({
    data() {
       return {
-         searchResults: [],
-         pageNumber: 1,
-         searchInput: "",
          imgPosition: 0,
          favImgPosition: 0,
          favData: [],
          useFavData: [],
-         totalPages: 0,
       };
    },
-
    beforeMount() {
       //Get data from localStorage
       this.favData.push(JSON.parse(localStorage.getItem("fav")));
@@ -39,35 +32,11 @@ new Vue({
          this.useFavData.push(i);
       }
       //--------------------
-      //Get mock data from mock.josn for resolve the warning of ligthbox
-      let data = MOCK.fetchImg();
-      this.searchResults.push(data);
-      //--------------------
    },
 
    methods: {
-      //Function for fetching unsplsh api
-      // async getFetch() {
-      //    let data = await DATA.searching(this.searchInput, this.pageNumber);
-      //    this.searchResults = [];
-      //    for (let i = 0; i < 12; i++) {
-      //       this.searchResults.shift(i);
-      //    }
-      //    for (let i of data.results) {
-      //       this.searchResults.push(i);
-      //    }
-      // },
-      //--------------------
-      //Get data from unsplash api
       async getInput(query) {
-         // for (let i = 0; i < 12; i++) {
-         //    this.searchResults.shift(i);
-         // }
          this.$store.dispatch("getInput", query);
-         // this.searchInput = query;
-         // let data = await DATA.searching(query, this.pageNumber);
-         // this.totalPages = data.total_pages;
-         document.querySelector(".gallery > .content").style.display = "block";
       },
       //---------------
       thisImg(index) {
@@ -90,15 +59,9 @@ new Vue({
       },
       nextPage() {
          this.$store.dispatch("nextPage");
-         document.querySelector(".gallery > .btns > .btns-content > .preBtn").style.display = "block";
-         document.querySelector(".gallery > .light-box").style.display = "none";
       },
       previousPage() {
-         document.querySelector(".gallery > .light-box").style.display = "none";
          this.$store.dispatch("previousPage");
-         if (this.$store.state.pageNumber == 1) {
-            document.querySelector(".gallery > .btns > .btns-content > .preBtn").style.display = "none";
-         }
       },
       //Set favorite images to local storage
       addFav(value) {

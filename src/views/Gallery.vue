@@ -1,8 +1,8 @@
 <template>
   <div class="gallery">
     <h1>TOTOKI</h1>
-    <Searching />
-    <div class="content">
+    <Searching @showContent="showContent" />
+    <div class="content" v-if="displayContent">
       <ul>
         <li v-for="(img, index) in Images" :key="index">
           <div
@@ -27,7 +27,7 @@
         <button @click="nextPage" class="nextBtn" v-if="nextBtn">Next</button>
       </div>
     </div>
-    <LightBox />
+    <LightBox v-if="lightBox" />
   </div>
 </template>
 
@@ -45,23 +45,32 @@ export default {
       displayBtns: false,
       previousBtn: false,
       nextBtn: true,
+      lightBox: false,
+      displayContent: false,
     };
   },
   updated() {
     if (this.Images.length >= 12) {
       this.displayBtns = true;
-    }
-  },
-  mounted() {
-    if (this.Images.length >= 12) {
-      document.querySelector(".gallery > .content").style.display = "block";
-      this.displayBtns = true;
+      this.lightBox = true;
     }
     if (this.PageNumber != 1) {
       this.previousBtn = true;
+    } else {
+      this.previousBtn = false;
+    }
+  },
+
+  mounted() {
+    if (this.Images.length >= 12) {
+      this.displayBtns = true;
+      this.displayContent = true;
     }
   },
   methods: {
+    showContent() {
+      this.displayContent = true;
+    },
     nextPage() {
       this.previousBtn = true;
       if (this.PageNumber === this.$root.totalPages) {
@@ -99,7 +108,6 @@ export default {
     margin: 20px 0 20px 0;
   }
   .content {
-    display: none;
     ul {
       padding: 0;
       display: grid;

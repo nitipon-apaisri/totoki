@@ -35,6 +35,7 @@ export default {
         });
         document.querySelector(".searching-box > p").style.display = "none";
       }
+      this.$emit("showContent");
     },
   },
 };
