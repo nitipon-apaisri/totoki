@@ -33,7 +33,6 @@ new Vue({
       }
       //--------------------
    },
-
    methods: {
       async getInput(query) {
          this.$store.dispatch("getInput", query);
@@ -105,7 +104,6 @@ new Vue({
          }
       },
    },
-
    router,
    store,
    render: (h) => h(App),

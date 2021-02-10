@@ -30,7 +30,6 @@
     <LightBox v-if="lightBox" />
   </div>
 </template>
-
 <script>
 import LightBox from "@/components/LightBoxComp";
 import Searching from "@/components/SearchComp";
@@ -98,7 +97,6 @@ export default {
   },
 };
 </script>
-
 <style lang="scss" scoped>
 .gallery {
   max-width: 1440px;

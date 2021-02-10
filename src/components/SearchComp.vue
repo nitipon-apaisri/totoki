@@ -13,7 +13,6 @@
     <p>{{ errorAlert }}</p>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -40,7 +39,6 @@ export default {
   },
 };
 </script>
-
 <style lang="scss" scoped>
 @mixin placeholder {
   font-size: 0.7rem;
