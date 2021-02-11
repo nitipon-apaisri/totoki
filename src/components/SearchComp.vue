@@ -24,25 +24,6 @@ export default {
   },
   methods: {
     postInput() {
-<<<<<<< HEAD
-
-      //Not working
-      /*
-      if(this.$root.getInput(this.input).length == 0){
-        this.input = "";
-        break;
-      }
-      */
-
-      this.$root.getInput(this.input);
-
-      
-      
-      this.input = "";
-      this.$router.push("/Gallery").catch((err) => {
-        err;
-      });
-=======
       if (this.input.length == 0) {
         this.errorAlert = "It's empty!";
         document.querySelector(".searching-box > p").style.display = "block";
@@ -54,7 +35,6 @@ export default {
         });
         document.querySelector(".searching-box > p").style.display = "none";
       }
->>>>>>> main
     },
 
     btnStuff() {
@@ -78,21 +58,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
-
-/*
-button:hover {
-  background-color: black;
-  display: none;
-}
-*/
-
-.cursor:hover {
-  cursor: crosshair;
-  background-color: red;
-}
-
-=======
 @mixin placeholder {
   font-size: 0.7rem;
 }
@@ -132,5 +97,4 @@ button:hover {
     @include placeholder;
   }
 }
->>>>>>> main
 </style>

@@ -2,11 +2,6 @@
   <div class="navi">
     <nav>
       <ul>
-<<<<<<< HEAD
-        <router-link to="/">Home</router-link> |
-        <router-link to="/Gallery">Gallery</router-link> |
-        <router-link to="/Favorite">Favorite</router-link>
-=======
         <li>
           <router-link to="/" @click="reset">Home</router-link>
         </li>
@@ -16,7 +11,6 @@
         <li>
           <router-link to="/Favorite" @click="reset">Favorite</router-link>
         </li>
->>>>>>> main
       </ul>
     </nav>
   </div>
@@ -32,26 +26,6 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
-<style scoped>
-
-a:link {
-  color: black;
-}
-
-a:visited {
-  color: black;
-}
-
-a:hover {
-  color: red;
-}
-
-a:active {
-  color: yellow;
-}
-
-=======
 <style lang="scss" scoped>
 .navi {
   nav {
@@ -73,5 +47,4 @@ a:active {
     }
   }
 }
->>>>>>> main
 </style>
