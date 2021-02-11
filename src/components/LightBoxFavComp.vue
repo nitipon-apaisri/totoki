@@ -213,4 +213,83 @@ export default {
     }
   }
 }
+@media screen and (max-width: 1000px) {
+  .light-box {
+    .img-card {
+      width: 860px;
+      .img-info {
+        a {
+          .img {
+            width: 400px;
+            height: 267px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  .light-box {
+    .img-card {
+      width: 560px;
+      margin: 80px auto 0 auto;
+      .img-info {
+        display: block;
+        a {
+          .img {
+            width: 480px;
+            height: 320px;
+          }
+        }
+        .img-details {
+          margin-top: 20px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 624px) {
+  .light-box {
+    .img-card {
+      width: 440px;
+      margin: 80px auto 0 auto;
+      .img-info {
+        display: block;
+        a {
+          .img {
+            width: 360px;
+            height: 240px;
+          }
+        }
+        .img-details {
+          margin-top: 20px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .light-box {
+    .img-card {
+      width: 300px;
+      padding: 30px;
+      margin: 80px auto 0 auto;
+      .img-info {
+        display: block;
+        a {
+          .img {
+            width: 240px;
+            height: 160px;
+          }
+        }
+        .img-details {
+          margin-top: 20px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
 </style>
