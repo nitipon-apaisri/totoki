@@ -36,7 +36,24 @@ export default {
         document.querySelector(".searching-box > p").style.display = "none";
       }
     },
+
+    btnStuff() {
+
+      /*
+      if(this.$root.getInput(this.input).length == 0)
+      {
+        document.getElementsByTagName("button")[0].classList.add("cursor")
+      }
+      */
+
+     console.log("beforeCreate med btn!")
+    }
   },
+
+    beforeCreate(){
+      console.log("beforeCreate!")
+      //this.btnStuff()
+    }
 };
 </script>
 <style lang="scss" scoped>

@@ -13,7 +13,8 @@ export default {
   components: {
     Searching,
   },
-};
+}
+
 </script>
 <style lang="scss" scoped>
 .container {

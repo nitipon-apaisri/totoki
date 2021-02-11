@@ -145,6 +145,10 @@ export default {
       }
     }
   }
+
+  .img:hover {
+    opacity: 0.3;
+  }
 }
 @media screen and (max-width: 1024px) {
   .gallery {
