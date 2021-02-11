@@ -32,23 +32,17 @@ export default new Vuex.Store({
             state.searchResults.push(i);
          }
       },
-      nextPage(state) {
-         state.pageNumber++;
-      },
-      previousPage(state) {
-         state.pageNumber--;
-      },
    },
    actions: {
       getInput(context, query) {
          context.commit("getInput", query);
       },
       nextPage(context) {
-         context.commit("nextPage");
+         context.state.pageNumber++;
          context.commit("fetchApi");
       },
       previousPage(context) {
-         context.commit("previousPage");
+         context.state.pageNumber--;
          context.commit("fetchApi");
       },
    },
