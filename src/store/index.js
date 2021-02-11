@@ -11,39 +11,42 @@ export default new Vuex.Store({
       searchInput: "",
    },
    mutations: {
-      async getInput(state, query) {
+      getInput(state, query) {
          state.pageNumber = 1;
          state.searchInput = query;
-         let data = await DATA.searching(query, state.pageNumber);
-         state.totalPages = data.total_pages;
-         for (let i = 0; i < 12; i++) {
-            state.searchResults.shift(i);
-         }
-         for (let i of data.results) {
-            state.searchResults.push(i);
-         }
-      },
-      async fetchApi(state) {
-         let data = await DATA.searching(state.searchInput, state.pageNumber);
-         for (let i = 0; i < 12; i++) {
-            state.searchResults.shift(i);
-         }
-         for (let i of data.results) {
-            state.searchResults.push(i);
-         }
       },
    },
    actions: {
-      getInput(context, query) {
+      async getInput(context, query) {
          context.commit("getInput", query);
+         let data = await DATA.searching(query, context.state.pageNumber);
+         context.state.totalPages = data.total_pages;
+         for (let i = 0; i < 12; i++) {
+            context.state.searchResults.shift(i);
+         }
+         for (let i of data.results) {
+            context.state.searchResults.push(i);
+         }
       },
-      nextPage(context) {
+      async nextPage(context) {
          context.state.pageNumber++;
-         context.commit("fetchApi");
+         let data = await DATA.searching(context.state.searchInput, context.state.pageNumber);
+         for (let i = 0; i < 12; i++) {
+            context.state.searchResults.shift(i);
+         }
+         for (let i of data.results) {
+            context.state.searchResults.push(i);
+         }
       },
-      previousPage(context) {
+      async previousPage(context) {
          context.state.pageNumber--;
-         context.commit("fetchApi");
+         let data = await DATA.searching(context.state.searchInput, context.state.pageNumber);
+         for (let i = 0; i < 12; i++) {
+            context.state.searchResults.shift(i);
+         }
+         for (let i of data.results) {
+            context.state.searchResults.push(i);
+         }
       },
    },
    modules: {},

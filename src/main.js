@@ -7,12 +7,14 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import store from "./store";
 library.add(faSearch);
 library.add(faHeart);
 library.add(faTimes);
 library.add(faTrashAlt);
+library.add(faEllipsisH);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 //--------
 Vue.config.productionTip = false;
