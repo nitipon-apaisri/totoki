@@ -33,6 +33,7 @@ new Vue({
       for (let i of this.favData[0]) {
          this.useFavData.push(i);
       }
+      console.log(window.innerWidth);
       //--------------------
    },
    methods: {

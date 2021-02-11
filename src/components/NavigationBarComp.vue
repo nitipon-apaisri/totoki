@@ -30,6 +30,11 @@ export default {
       toggleMenu: true,
     };
   },
+  beforeMount() {
+    if (window.innerWidth > 425) {
+      this.toggleMenu = false;
+    }
+  },
   methods: {
     reset() {
       this.$root.loaded = false;
