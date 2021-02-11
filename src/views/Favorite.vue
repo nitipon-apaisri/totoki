@@ -64,4 +64,73 @@ export default {
     }
   }
 }
+@media screen and (max-width: 1024px) {
+  .favorite {
+    .content {
+      ul {
+        li {
+          .img {
+            height: 234px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  .favorite {
+    .content {
+      ul {
+        grid-template-columns: repeat(6, 1fr);
+        li {
+          .img {
+            height: 276px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 642px) {
+  .favorite {
+    .content {
+      ul {
+        grid-template-columns: repeat(3, 1fr);
+        li {
+          .img {
+            height: 370.66px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .favorite {
+    .content {
+      ul {
+        grid-template-columns: repeat(3, 1fr);
+        li {
+          .img {
+            height: 240.66px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .favorite {
+    .content {
+      ul {
+        grid-template-columns: repeat(3, 1fr);
+        li {
+          .img {
+            height: 170.66px;
+          }
+        }
+      }
+    }
+  }
+}
 </style>
